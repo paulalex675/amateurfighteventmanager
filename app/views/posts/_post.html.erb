@@ -1,0 +1,35 @@
+  <div>
+    <div>
+      <%= post.body %>
+      <% if post.user.username == "" %>
+        <% user_label = post.user.first_name + " " + post.user.last_name %>
+      <% else %>
+        <% user_label = post.user.username %>
+      <% end %>
+      <%= link_to "#{user_label}", user_path(post.user_id) %>      
+    </div>
+    <div>
+      <% if post.user.id == current_user.id %>
+        <div><%= link_to "Edit", edit_post_path(post) %></div>
+      <% else %>
+         <% pre_like = post.likes.find { |like| like.liker_id == current_user.id } %>
+        <% if pre_like %>
+          <%= link_to "Un-Like (#{post.likes.count})", like_path(pre_like), method: :delete %>
+        <% else %>
+          <%= button_to "Like (#{post.likes.count})", likes_path, method: :post, params: { likeable_id: post.id, likeable_type: "Post" } %>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <div>
+        <%= render 'post_comments_form' %>
+         
+      </div>
+      <div>
+        <% post.comments do |comment| %>
+          <p><%=  comment.body %></p>
+          <p><%= comment.auther.first_name %>
+        <% end %>
+      </div>
+    </div>
+  </div>
