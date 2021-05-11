@@ -22,14 +22,10 @@
     </div>
     <div>
       <div>
-        <%= render 'post_comments_form' %>
-         
+        <%= render partial: 'comments/comments', locals: { commentable: post } %>         
       </div>
       <div>
-        <% post.comments do |comment| %>
-          <p><%=  comment.body %></p>
-          <p><%= comment.auther.first_name %>
-        <% end %>
+        <%= render partial: 'comments/form', locals: { commentable: post } %>
       </div>
     </div>
   </div>

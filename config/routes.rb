@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :comments
   resources :likes
   resources :friend_requests
   resources :friendships
-  resources :posts
+  resources :posts do
+    resources :comments, module: :posts
+  end
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
   resources :users, only: [:show, :index]
   root 'posts#index'
