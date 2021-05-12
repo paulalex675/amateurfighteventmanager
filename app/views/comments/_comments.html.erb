@@ -3,4 +3,16 @@
 <% commentable.comments.each do |comment| %>
   <p><%= comment.body %><span>
  <strong> <%= link_to "#{comment.auther.first_name}", user_path(comment.auther_id) %>  </strong></p>
+  <p>
+    <% if comment.auther_id == current_user.id %>
+        <div><%= link_to "Edit", edit_post_path(comment) %></div>
+      <% else %>
+         <% pre_like = comment.likes.find { |like| like.liker_id == current_user.id } %>
+        <% if pre_like %>
+          <%= link_to "Un-Like (#{comment.likes.count})", like_path(pre_like), method: :delete %>
+        <% else %>
+           <%= render partial: 'likes/like_button', locals: { likeable: comment } %>
+        <% end %>
+      <% end %>
+  </p>
 <% end %>

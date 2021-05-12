@@ -7,7 +7,8 @@ class LikesController < ApplicationController
   end
 
   def create
-    @like = Like.new(liker_id: current_user.id, likeable_id: params[:likeable_id], likeable_type: params[:likeable_type])
+    @like = @likeable.likes.new
+    @like.liker = current_user
 
     respond_to do |format|
       if @like.save

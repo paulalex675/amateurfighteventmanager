@@ -16,7 +16,7 @@
         <% if pre_like %>
           <%= link_to "Un-Like (#{post.likes.count})", like_path(pre_like), method: :delete %>
         <% else %>
-          <%= button_to "Like (#{post.likes.count})", likes_path, method: :post, params: { likeable_id: post.id, likeable_type: "Post" } %>
+           <%= render partial: 'likes/like_button', locals: { likeable: post } %>
         <% end %>
       <% end %>
     </div>
