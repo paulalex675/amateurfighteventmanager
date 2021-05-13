@@ -44,6 +44,8 @@ gem "font-awesome-rails"
 
 gem 'simple_form'
 
+gem 'gravatar_image_tag'
+
 
 
 group :development, :test do

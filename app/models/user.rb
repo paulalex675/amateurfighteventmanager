@@ -7,13 +7,13 @@ class User < ApplicationRecord
   
   has_many :notifications, foreign_key: :recipient_id
   has_many :posts, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :comments, foreign_key: :auther_id, dependent: :destroy
   has_many :likes, foreign_key: :liker_id, dependent: :destroy
   has_many :liked_posts, class_name: 'Post', through: :likes
   has_one_attached :avatar
   has_many :friend_requests_as_requestor, foreign_key: :requestor_id, class_name: :FriendRequest, dependent: :destroy
   has_many :friend_requests_as_receiver, foreign_key: :receiver_id, class_name: :FriendRequest
-  has_many :friendships, ->(user) { where("user_a_id = ? OR user_b_id = ?", user.id, user.id) }, dependent: :destroy
+  has_many :friendships, ->(user) { where("user_a_id = ? OR user_b_id = ?", user.id, user.id) }
   has_many :friends, through: :friendships
 
   def self.create_from_provider_data(provider_data)
@@ -26,7 +26,7 @@ class User < ApplicationRecord
   end
 
   def name
-    "#{User.first_name} #{User.last_name}"
+    self.name = "#{User.first_name} #{User.last_name}"
   end
 
   def friends
@@ -38,4 +38,20 @@ class User < ApplicationRecord
     User.joins(join_statement)
         .where.not(id: id)
   end
+
+  def gravatar_avatar(user)
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
+    "http://gravatar.com/#{gravatar_id}.png"
+  end
+
+  def profile_picture
+    if self.avatar.attached?
+      avatar
+    elsif provider == :facebook
+      "http://graph.facebook.com/#{self.uid}/picture?type=normal"
+    else
+      gravatar_avatar(self)
+    end
+  end
+
 end

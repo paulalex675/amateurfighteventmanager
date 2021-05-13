@@ -11,6 +11,11 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
+    <style>
+      #menu-toggle:checked + #menu {
+        display: block;
+      }
+    </style>
   </head>
 
   <body>
