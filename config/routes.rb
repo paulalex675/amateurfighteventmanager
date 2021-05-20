@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :gyms do
+    resources :addresses
+  end
+  resources :notifications
   resources :likes
   resources :friend_requests
   resources :friendships

@@ -1,0 +1,4 @@
+<% current_user.notifications.each do |notification| %>
+  <p><%= "#{notification.actor.first_name} #{notification.action} your #{notification.notifiable.class}" %></p><br>
+  <p><%= button_to 'mark as read' %> </p>
+<% end %>

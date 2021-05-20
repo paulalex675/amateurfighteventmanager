@@ -18,14 +18,14 @@
     </style>
   </head>
 
-  <body>
+  <body class="antialiased bg-gray-200">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-
-    
-    <%= render 'layouts/navbar' %>
-    
-    <%= yield %>
-
+    <header class="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
+      <%= render 'layouts/navbar' %>
+    </header>
+    <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
+      <%= yield %>
+    </div>
   </body>
 </html>

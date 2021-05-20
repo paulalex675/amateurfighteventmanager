@@ -28,7 +28,7 @@ class FriendRequestsController < ApplicationController
         if @friend_request.save
           format.html { redirect_to user_url(params[:receiver_id]), notice: "Friend request has been sent." }
           format.json { render :show, status: :created, location: @friend_request }
-          #Notification.create(recipient: User.find(params[:receiver_id]), actor: current_user, action: 'sent friend request', notifiable: @friend_request)
+          Notification.create(recipient_id: @friend_request.receiver.id, actor_id: current_user.id, action: 'sent', notifiable: @friend_request)
         else
           format.html { redirect_to user_url(params[:receiver_id]), notice: "Friend request could not be sent." }
           format.json { render json: @friend_request.errors, status: :unprocessable_entity }

@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Users</h1>
+<br>
 
 <table>
   <thead>
@@ -17,7 +18,6 @@
         <td><%= user.username %></td>
         <td><%= user.email %></td>
         <td><%= link_to 'View Profile', user %></td>
-        <td><%= link_to 'Add friend', friend_request_path, @user %></td>
         
         
       </tr>

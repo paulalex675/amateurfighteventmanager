@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @gym.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @gym.name %>
+</p>
+
+<p>
+  <strong>Primary style:</strong>
+  <%= @gym.primary_style %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @gym.email %>
+</p>
+
+<p>
+  <strong>Website:</strong>
+  <%= @gym.website %>
+</p>
+
+<p>
+  <strong>Telephone:</strong>
+  <%= @gym.telephone %>
+</p>
+
+<%= link_to 'Edit', edit_gym_path(@gym) %> |
+<%= link_to 'Back', gyms_path %>

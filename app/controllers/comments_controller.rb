@@ -23,12 +23,13 @@ class CommentsController < ApplicationController
   def create
 
     @comment = @commentable.comments.new(comment_params)
-    @comment.auther = current_user
+    @comment.user = current_user
 
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @commentable, notice: "Comment was successfully posted!" }
         format.json { render :show, status: :created, location: @comment }
+        Notification.create(recipient_id: @commentable.user.id, actor_id: current_user.id, action: 'commented on', notifiable: @commentable)
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }

@@ -13,8 +13,8 @@ class LikesController < ApplicationController
     respond_to do |format|
       if @like.save
         format.html { redirect_to posts_url, notice: "You liked this!" }
-        #format.json { render :show, status: :created, location: @likeable }
-       #Notification.create(recipient: User.find(params[:receiver_id]), actor: current_user, action: 'liked', notifiable: @like)
+        format.json { render :show, status: :created, location: @likeable }
+        Notification.create(recipient_id: @likeable.user.id, actor_id: current_user.id, action: 'liked', notifiable: @like.likeable)
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @like.errors, status: :unprocessable_entity }

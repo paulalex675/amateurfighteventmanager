@@ -1,24 +1,31 @@
   <div>
-    <div>
-      <%= post.body %>
-      <% if post.user.username == "" %>
-        <% user_label = post.user.first_name + " " + post.user.last_name %>
-      <% else %>
-        <% user_label = post.user.username %>
-      <% end %>
-      <%= link_to "#{user_label}", user_path(post.user_id) %>      
-    </div>
-    <div>
-      <% if post.user.id == current_user.id %>
-        <div><%= link_to "Edit", edit_post_path(post) %></div>
-      <% else %>
-         <% pre_like = post.likes.find { |like| like.liker_id == current_user.id } %>
-        <% if pre_like %>
-          <%= link_to "Un-Like (#{post.likes.count})", like_path(pre_like), method: :delete %>
+    <div class="flex flex-col shadow my-4">
+      <div>image</div>
+      <div class="bg-white flex flex-col justify-start p-6">
+        <p class="text-3xl font-bold pb-4">
+          <%= post.body %>
+        </p>
+        <% if post.user.username == "" %>
+          <% user_label = post.user.first_name + " " + post.user.last_name %>
         <% else %>
-           <%= render partial: 'likes/like_button', locals: { likeable: post } %>
+          <% user_label = post.user.username %>
         <% end %>
-      <% end %>
+          <a href="#" class="text=3x1 font-bold hover:text-gray-700 pb-4">
+            <%= link_to "#{user_label}", user_path(post.user_id) %>
+          </a>     
+        </div>
+        <div>
+          <% if post.user.id == current_user.id %>
+            <div><%= link_to "Edit", edit_post_path(post) %></div>
+          <% else %>
+            <% pre_like = post.likes.find { |like| like.liker_id == current_user.id } %>
+            <% if pre_like %>
+              <%= link_to "Un-Like (#{post.likes.count})", like_path(pre_like), method: :delete %>
+            <% else %>
+              <%= render partial: 'likes/like_button', locals: { likeable: post } %>
+            <% end %>
+          <% end %>
+      </div>
     </div>
     <div>
       <div>

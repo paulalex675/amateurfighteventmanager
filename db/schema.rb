@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_12_183438) do
+ActiveRecord::Schema.define(version: 2021_05_20_232147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,20 @@ ActiveRecord::Schema.define(version: 2021_05_12_183438) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "address1"
+    t.string "address2"
+    t.string "town_or_city"
+    t.string "county"
+    t.string "post_code"
+    t.string "country"
+    t.integer "gym_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "comments", force: :cascade do |t|
-    t.integer "auther_id"
+    t.integer "user_id"
     t.text "body"
     t.integer "commentable_id"
     t.string "commentable_type"
@@ -70,6 +82,17 @@ ActiveRecord::Schema.define(version: 2021_05_12_183438) do
     t.index ["user_b_id"], name: "index_friendships_on_user_b_id"
   end
 
+  create_table "gyms", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.string "primary_style"
+    t.string "email"
+    t.string "website"
+    t.string "telephone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "liker_id"
     t.integer "likeable_id"
@@ -77,6 +100,17 @@ ActiveRecord::Schema.define(version: 2021_05_12_183438) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "notifiable_id"
+    t.string "notifiable_type"
+    t.integer "recipient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "actor_id"
+    t.string "action"
+    t.datetime "read_at"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -94,6 +128,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_183438) do
     t.string "encrypted_password", default: "", null: false
     t.string "provider", limit: 50, default: "", null: false
     t.string "uid", limit: 200, default: "", null: false
+    t.text "bio"
     t.integer "avatar_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

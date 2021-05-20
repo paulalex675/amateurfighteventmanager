@@ -7,7 +7,7 @@ class User < ApplicationRecord
   
   has_many :notifications, foreign_key: :recipient_id
   has_many :posts, dependent: :destroy
-  has_many :comments, foreign_key: :auther_id, dependent: :destroy
+  has_many :comments, foreign_key: :user_id, dependent: :destroy
   has_many :likes, foreign_key: :liker_id, dependent: :destroy
   has_many :liked_posts, class_name: 'Post', through: :likes
   has_one_attached :avatar

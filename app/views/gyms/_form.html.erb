@@ -1,0 +1,18 @@
+
+<%= simple_form_for(@gym) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :name %>
+    <%= f.input :primary_style %>
+    <%= f.input :email %>
+    <%= f.input :website %>
+    <%= f.input :telephone %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
