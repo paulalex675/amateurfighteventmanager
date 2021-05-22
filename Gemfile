@@ -46,6 +46,8 @@ gem 'simple_form'
 
 gem 'gravatar_image_tag'
 
+gem 'country_select'
+
 
 
 group :development, :test do

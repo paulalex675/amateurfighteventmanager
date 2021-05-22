@@ -2,6 +2,18 @@
 
 one:
   address1: MyString
+  address2: MyString
+  town_or_city: MyString
+  county: MyString
+  post_code: MyString
+  country: MyString
+  gym_id: 1
 
 two:
   address1: MyString
+  address2: MyString
+  town_or_city: MyString
+  county: MyString
+  post_code: MyString
+  country: MyString
+  gym_id: 1

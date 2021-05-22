@@ -11,7 +11,7 @@
     <nav>
       <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
         <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Home', root_path %></a></li>
-        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Dojos' %></a></li>
+        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Dojos', gyms_path %></a></li>
         <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Fighters', users_path %></a></li>
         <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Events' %></a></li>
         <% if user_signed_in? %>

@@ -4,15 +4,16 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :user_id %>
-    <%= f.input :name %>
-    <%= f.input :primary_style %>
-    <%= f.input :email %>
+    <%= f.file_field :avatar %>
+    <%= f.input :name, require: true %>
+    <%= f.input :primary_style, require: true %>
+    <%= f.input :email, require: true %>
     <%= f.input :website %>
-    <%= f.input :telephone %>
+    <%= f.input :telephone, require: true %>
+    <%= f.input :num_prems, label: "Number of Premises", collection: 0..10 %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+    <%= f.button :submit, "Add Gym" %>
+  </button>
 <% end %>

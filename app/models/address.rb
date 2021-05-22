@@ -1,3 +1,3 @@
 class Address < ApplicationRecord
-  belongs_to :gym, class_name: "Gym", foreign_key: "gym_id"
+  belongs_to :hostable, polymorphic: true
 end

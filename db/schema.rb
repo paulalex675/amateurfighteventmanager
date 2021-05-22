@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_232147) do
+ActiveRecord::Schema.define(version: 2021_05_22_210236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,9 +50,10 @@ ActiveRecord::Schema.define(version: 2021_05_20_232147) do
     t.string "county"
     t.string "post_code"
     t.string "country"
-    t.integer "gym_id"
+    t.integer "hostable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "hostable_type"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 2021_05_20_232147) do
     t.string "telephone"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "num_prems"
   end
 
   create_table "likes", force: :cascade do |t|

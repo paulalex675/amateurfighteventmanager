@@ -1,34 +1,70 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>    
 
-<p>
-  <strong>User:</strong>
-  <%= @gym.user_id %>
-</p>
+    <p>
+      <div>Gym logo/picture</div>    
+    </p>
+    <p>
+      <strong>User:</strong>
+      <%= @gym.user.first_name + " " + @gym.user.last_name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @gym.name %>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <%= @gym.name %>
+    </p>
 
-<p>
-  <strong>Primary style:</strong>
-  <%= @gym.primary_style %>
-</p>
+    <p>
+      <strong>Primary style:</strong>
+      <%= @gym.primary_style %>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @gym.email %>
-</p>
+    <p>
+      <strong>Email:</strong>
+      <%= @gym.email %>
+    </p>
 
-<p>
-  <strong>Website:</strong>
-  <%= @gym.website %>
-</p>
+    <p>
+      <strong>Website:</strong>
+      <%= @gym.website %>
+    </p>
 
-<p>
-  <strong>Telephone:</strong>
-  <%= @gym.telephone %>
-</p>
+    <p>
+      <strong>Telephone:</strong>
+      <%= @gym.telephone %>
+    </p>
 
-<%= link_to 'Edit', edit_gym_path(@gym) %> |
-<%= link_to 'Back', gyms_path %>
+    <p>
+      <strong>Address:</strong>
+      <% @gym.addresses.each do |address| %>
+        <p><%= address.address1 %></p><br>
+        <p><%= address.address2 %></p><br>
+        <p><%= address.town_or_city %></p><br>
+        <p><%= address.county %></p><br>
+        <p><%= address.post_code %></p><br>
+        <p><%= address.country %></p><br>
+      <% end %>
+      
+    </p>
+    <% if @gym.user == current_user %>
+      <div>
+      <strong>Add an address to your gym</strong>
+      <%= render partial: 'addresses/form', locals: { hostable: @gym }  %>
+      
+      </div>
+      <%= link_to 'Edit', edit_gym_path(@gym) %> |
+      <%= link_to 'Destroy' %>
+    <% else %>
+      <% pre_like = @gym.likes.find { |like| like.liker_id == current_user.id } %>
+        <% if pre_like %>
+          <%= link_to "Un-Like (#{@gym.likes.count})", like_path(pre_like), method: :delete %>
+        <% else %>
+          <%= render partial: 'likes/like_button', locals: { likeable: @gym } %>
+        <% end %>
+    <% end %>
+    <%= link_to 'Back', gyms_path %>
+
+
+
+  
+ 
+   

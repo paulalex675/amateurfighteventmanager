@@ -15,6 +15,9 @@ class User < ApplicationRecord
   has_many :friend_requests_as_receiver, foreign_key: :receiver_id, class_name: :FriendRequest
   has_many :friendships, ->(user) { where("user_a_id = ? OR user_b_id = ?", user.id, user.id) }
   has_many :friends, through: :friendships
+  has_many :gyms, foreign_key: :user_id
+  has_one :gym, class_name: "Gym", foreign_key: "gym_id"
+  
 
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|

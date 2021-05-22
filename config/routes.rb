@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :gyms do
-    resources :addresses
+    resources :likes, module: :gyms
+    resources :addresses, module: :gyms
   end
+  resources :addresses
   resources :notifications
   resources :likes
   resources :friend_requests

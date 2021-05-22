@@ -23,10 +23,10 @@ class GymsController < ApplicationController
   def create
     @owner = current_user
     @gym = @owner.gyms.new(gym_params)
-
+  
     respond_to do |format|
       if @gym.save
-        format.html { redirect_to @gym, notice: "Gym was successfully created." }
+        format.html { redirect_to new_address_path(@gym), notice: "Gym was successfully created." } 
         format.json { render :show, status: :created, location: @gym }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +65,6 @@ class GymsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def gym_params
-      params.require(:gym).permit(:user_id, :name, :primary_style, :email, :website, :telephone)
+      params.require(:gym).permit(:user_id, :name, :primary_style, :email, :website, :telephone, :num_prems)
     end
 end

@@ -12,7 +12,7 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to posts_url, notice: "You liked this!" }
+        format.html { redirect_to @likeable, notice: "You liked this!" }
         format.json { render :show, status: :created, location: @likeable }
         Notification.create(recipient_id: @likeable.user.id, actor_id: current_user.id, action: 'liked', notifiable: @like.likeable)
       else
@@ -25,7 +25,7 @@ class LikesController < ApplicationController
   def destroy
     @like.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "You unliked this post...sad times." }
+      format.html { redirect_to @like.likeable, notice: "You unliked this post...sad times." }
       format.json { head :no_content }
     end
   end
