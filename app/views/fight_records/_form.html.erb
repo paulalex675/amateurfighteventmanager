@@ -1,0 +1,17 @@
+
+<%= simple_form_for(@fight_record) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :style %>
+    <%= f.input :win %>
+    <%= f.input :draw %>
+    <%= f.input :lose %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

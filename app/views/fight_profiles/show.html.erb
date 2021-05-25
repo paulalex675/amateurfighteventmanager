@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @fight_profile.user.full_name %>
+</p>
+
+<p>
+  <strong>Ring name:</strong>
+  <%= @fight_profile.ring_name %>
+</p>
+
+<p>
+  <strong>Style:</strong>
+  <%= @fight_profile.style %>
+</p>
+
+<p>
+  <strong>Gym:</strong>
+  <%= @fight_profile.gym.name %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <% if @fight_profile.gender =='1' %>
+    Male
+  <% else %>
+    Female 
+  <% end %>
+</p>
+
+<p>
+  <strong>Fight weight:</strong>
+  <%= @fight_profile.fight_weight %>
+</p>
+<% if @fight_profile.user == current_user %>
+  <%= link_to 'Edit', edit_fight_profile_path(@fight_profile) %>|
+  <%= link_to 'Destroy', @fight_profile, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<% end %>
+<%= link_to 'Back', fight_profiles_path %>

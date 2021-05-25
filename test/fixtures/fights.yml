@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fighter_a_id: 1
+  fighter_b_id: 1
+  style: MyString
+  weight: MyString
+  result: MyString
+  draw: false
+  winner: 1
+  info: MyText
+  event_id: 1
+
+two:
+  fighter_a_id: 1
+  fighter_b_id: 1
+  style: MyString
+  weight: MyString
+  result: MyString
+  draw: false
+  winner: 1
+  info: MyText
+  event_id: 1

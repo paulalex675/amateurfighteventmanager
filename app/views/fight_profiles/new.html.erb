@@ -1,0 +1,5 @@
+<h1>Hey <%=current_user.first_name%> let's get your all set up ready to fight!</h1><br>
+
+<%= render 'form', fight_profile: @fight_profile %>
+
+<%= link_to 'Back', fight_profiles_path %>

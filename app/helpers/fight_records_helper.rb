@@ -1,0 +1,2 @@
+module FightRecordsHelper
+end

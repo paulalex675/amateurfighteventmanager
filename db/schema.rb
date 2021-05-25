@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_22_210236) do
+ActiveRecord::Schema.define(version: 2021_05_25_084936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,50 @@ ActiveRecord::Schema.define(version: 2021_05_22_210236) do
     t.text "body"
     t.integer "commentable_id"
     t.string "commentable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer "gym_id"
+    t.datetime "event_date"
+    t.string "event_name"
+    t.text "event_info"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "fight_profiles", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "ring_name"
+    t.string "style"
+    t.integer "gym_id"
+    t.string "gender"
+    t.string "fight_weight"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "fight_records", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "style"
+    t.integer "win"
+    t.integer "draw"
+    t.integer "lose"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "fights", force: :cascade do |t|
+    t.integer "fighter_a_id"
+    t.integer "fighter_b_id"
+    t.string "style"
+    t.string "weight"
+    t.string "result"
+    t.boolean "draw"
+    t.integer "winner"
+    t.text "info"
+    t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -131,12 +175,12 @@ ActiveRecord::Schema.define(version: 2021_05_22_210236) do
     t.string "provider", limit: 50, default: "", null: false
     t.string "uid", limit: 200, default: "", null: false
     t.text "bio"
-    t.integer "avatar_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "provider_picture"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

@@ -1,21 +1,38 @@
 <p id="notice"><%= notice %></p>
 
 <div class="w-full container mx-auto">
-
-    <div class="flex flex-col items-center py-12">
-        <div class="">
-            <h1>Live feed...news feed...feed me??</h1>
+    <div class="flex flex-row flex-auto " >
+        <div class="flex flex-col items-left py-12 w-1/4">
+          <% Event.all.each do |event| %>
+            <div class="">              
+              <%= render partial: 'events/event', locals: { event: event } %>
+            </div>
+          <% end %>
         </div>
 
-        <div class="">
-            <%= render "posts/form", post: @post %>
+        <div class="flex flex-col items-center py-12 w-2/4">
+            <div class="">
+                <h1>Live feed...news feed...feed me??</h1>
+            </div>
+
+            <div class="">
+                <%= render "posts/form", post: @post %>
+            </div>
+            
+            <% @posts.each do |post| %>
+                <div  class="w-full md:w-2/3 flex flex-col items-center px-3">
+                <%= render partial: 'posts/post', locals: { post: post} %>
+                </div>
+            <% end %>              
         </div>
         
-        <% @posts.each do |post| %>
-            <div  class="w-full md:w-2/3 flex flex-col items-center px-3">
-              <%= render partial: 'posts/post', locals: { post: post} %>
+        <div class="flex flex-col items-right py12 w-1/4">
+          <% FightProfile.all.each do |fight_profile| %>
+            <div class="">
+              <%= render partial: 'fight_profiles/fighters', locals: { fight_profile: fight_profile } %>
             </div>
-        <% end %>
-            
+          <% end %>
+          
+        </div>
     </div>
 </div>

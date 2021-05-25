@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :fights do
+    resources :likes, module: :fights
+    resources :comments, module: :fights
+  end
+  resources :events do
+    resources :likes, module: :events
+  end
+  resources :fight_records
+  resources :fight_profiles
   resources :gyms do
     resources :likes, module: :gyms
     resources :addresses, module: :gyms

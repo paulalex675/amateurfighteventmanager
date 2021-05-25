@@ -280,6 +280,8 @@ Devise.setup do |config|
                   Rails.application.credentials.dig(:facebook, :facebook_client_id), 
                   Rails.application.credentials.dig(:facebook, :facebook_client_secret),
                   scope: 'public_profile, email', info_fields: 'email, first_name, last_name, picture',
+                  image_size: { width: 300, height: 300 },
+                  secure_image_url: true,
                   token_params: { parse: :json }
 
   # ==> Warden configuration

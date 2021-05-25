@@ -8,15 +8,18 @@
 			
       <%= image_tag @user.profile_picture %>
       <br>
-      <h1 class="text-3xl font-bold pt-8 lg:pt-0"> <%= @user.first_name %> </h1>
+      <h1 class="text-3xl font-bold pt-8 lg:pt-0"> <%= @user.full_name %> </h1>
       <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
-      <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start"> I make delicious Ice Cream...from peoples faces</p>
+      <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
+          <%= @user.fight_profiles.first.ring_name %>
+        </p>
       <p class="pt-8 text-sm"><%= @user.bio %></p>
       <% if @user == current_user %>
         <%= link_to 'Edit my info', edit_registration_path(@user) %>
         <%= render 'friend_requests/pending_friend_requests' %><br>
         <h4>Notifications</h4><br>
         <%= render 'notifications/notifications' %>
+        <%= link_to 'Set Up a fighter profile', fight_profile_path(@user.fight_profiles.first.id)%>
       <% else %>
         <% if Friendship.exists?(user_a_id: current_user.id, user_b_id: @user.id) || Friendship.exists?(user_a_id: @user.id, user_b_id: current_user.id) %>
           <div class="pt-12 pb-8">
@@ -35,7 +38,9 @@
           
         <% end %>
       <% end %>
-
+      <div>
+      
+      </div>
       <div>
         <p>Here are all of <%=@user.first_name%>'s posts</p><br>
         <table>
@@ -56,6 +61,9 @@
         </table>
       
       </div>
-      <h2>Friends</h2>
+
     </div>
   </div>
+<div>
+  <%= render 'fight_profile' %>
+</div>

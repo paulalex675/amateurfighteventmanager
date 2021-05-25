@@ -1,0 +1,31 @@
+
+
+<h1>Fight Profiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fighter</th>
+      <th>Ring name</th>
+      <th>Style</th>
+      <th>Gym</th>
+      <th>Gender</th>
+      <th>Fight weight</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% FightProfile.all.each do |fight_profile| %>
+      <tr>
+        <td><%= fight_profile.user.first_name %></td>
+        <td><%= fight_profile.ring_name %></td>
+        <td><%= fight_profile.style %></td>
+        <td><%= fight_profile.gym_id %></td>
+        <td><%= fight_profile.gender %></td>
+        <td><%= fight_profile.fight_weight %></td>
+        <td><%= link_to 'Show', fight_profile %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

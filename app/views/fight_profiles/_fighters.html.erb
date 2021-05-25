@@ -1,0 +1,33 @@
+<p>
+  <strong>Name:</strong>
+  <%= link_to "#{fight_profile.user.first_name}" + " " + "#{fight_profile.user.last_name}", fight_profile_path(fight_profile) %>
+</p>
+
+<p>
+  <strong>Ring name:</strong>
+  <%= fight_profile.ring_name %>
+</p>
+
+<p>
+  <strong>Style:</strong>
+  <%= fight_profile.style %>
+</p>
+
+<p>
+  <strong>Gym:</strong>
+  <%= fight_profile.gym.name %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <% if fight_profile.gender == '1' %>
+    Male
+  <% else %>
+    Female 
+  <% end %>
+</p>
+
+<p>
+  <strong>Fight weight:</strong>
+  <%= fight_profile.fight_weight %>
+</p>

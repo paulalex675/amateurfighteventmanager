@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
   has_many :gyms, foreign_key: :user_id
   has_one :gym, class_name: "Gym", foreign_key: "gym_id"
+  has_many :fight_profiles, dependent: :destroy
+  has_many :fight_records, dependent: :destroy
   
 
   def self.create_from_provider_data(provider_data)
@@ -25,6 +27,7 @@ class User < ApplicationRecord
       user.first_name = provider_data.info.first_name
       user.last_name = provider_data.info.last_name
       user.password = Devise.friendly_token[0, 20]
+      user.provider_picture = provider_data.info.image
     end
   end
 
@@ -48,13 +51,10 @@ class User < ApplicationRecord
   end
 
   def profile_picture
-    if self.avatar.attached?
-      avatar
-    elsif provider == :facebook
-      "http://graph.facebook.com/#{self.uid}/picture?type=normal"
-    else
-      gravatar_avatar(self)
-    end
+    self.avatar.attached? ? avatar : provider_picture
   end
 
+  def full_name
+    "#{self.first_name} " + "#{self.last_name}"
+  end
 end

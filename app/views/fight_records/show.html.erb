@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @fight_record.user_id %>
+</p>
+
+<p>
+  <strong>Style:</strong>
+  <%= @fight_record.style %>
+</p>
+
+<p>
+  <strong>Win:</strong>
+  <%= @fight_record.win %>
+</p>
+
+<p>
+  <strong>Draw:</strong>
+  <%= @fight_record.draw %>
+</p>
+
+<p>
+  <strong>Lose:</strong>
+  <%= @fight_record.lose %>
+</p>
+
+<%= link_to 'Edit', edit_fight_record_path(@fight_record) %> |
+<%= link_to 'Back', fight_records_path %>

@@ -13,7 +13,7 @@
         <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Home', root_path %></a></li>
         <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Dojos', gyms_path %></a></li>
         <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Fighters', users_path %></a></li>
-        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Events' %></a></li>
+        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Events', events_path %></a></li>
         <% if user_signed_in? %>
           <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'My Profile', current_user %></a></li>
           <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to "Notifications (#{current_user.notifications.count})", notifications_path %></a></li>
@@ -23,9 +23,10 @@
         <% end %>
       </ul>
     </nav>
-    <a href="#" class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor">
-    <% if user_signed_in? && current_user.avatar.attached? %>
-          <%= image_tag current_user.profile_picture %>
-    <% end %></a>
+    <a href="#" class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400">
+      <% if user_signed_in? %>
+        <%= image_tag current_user.provider_picture %>
+      <% end %>
+    </a>
 
   </div>
