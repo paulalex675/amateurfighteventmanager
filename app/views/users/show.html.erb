@@ -6,12 +6,16 @@
     <!-- Image for mobile view-->
 			<div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/MP0IUfwrn0A')"></div>
 			
-      <%= image_tag @user.profile_picture %>
+      <a class="href">
+        <%= image_tag @user.profile_picture %>
+      </a>
       <br>
       <h1 class="text-3xl font-bold pt-8 lg:pt-0"> <%= @user.full_name %> </h1>
       <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
       <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
+        <% if @user.fight_profiles.count > 0 %>
           <%= @user.fight_profiles.first.ring_name %>
+        <% end %>
         </p>
       <p class="pt-8 text-sm"><%= @user.bio %></p>
       <% if @user == current_user %>
@@ -19,7 +23,11 @@
         <%= render 'friend_requests/pending_friend_requests' %><br>
         <h4>Notifications</h4><br>
         <%= render 'notifications/notifications' %>
-        <%= link_to 'Set Up a fighter profile', fight_profile_path(@user.fight_profiles.first.id)%>
+        <% if @user.fight_profiles.count > 0 %>
+          <%= link_to 'Edit your fight profile', edit_fight_profile_path(@user.fight_profiles.first.id) %>
+        <% else %>
+          <%= link_to 'Set Up a fighter profile', new_fight_profile_path()%>
+        <% end %>
       <% else %>
         <% if Friendship.exists?(user_a_id: current_user.id, user_b_id: @user.id) || Friendship.exists?(user_a_id: @user.id, user_b_id: current_user.id) %>
           <div class="pt-12 pb-8">

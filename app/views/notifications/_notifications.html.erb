@@ -1,4 +1,4 @@
 <% current_user.notifications.each do |notification| %>
   <p><%= "#{notification.actor.first_name} #{notification.action} your #{notification.notifiable.class}" %></p><br>
-  <p><%= button_to 'mark as read' %> </p>
+  <p><%= button_to 'Mark as Read', edit_notification_path(notification.id), method: :get,  params: { read_at: Time.now } %> </p>
 <% end %>

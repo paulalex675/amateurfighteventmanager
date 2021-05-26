@@ -14,6 +14,9 @@ class NotificationsController < ApplicationController
     @notification.save
   end
 
+  def edit 
+  end
+
   def update
     respond_to do |format|
       if @notification.update(params)
@@ -26,13 +29,13 @@ class NotificationsController < ApplicationController
     end
   end
   def destroy
-    @like.destroy
+    @notification.destroy
   end
 
   private
 
   def set_notification
-    @notifcation = Notification.find(params[:id])
+    @notification = Notification.find(params[:id])
   end
 
 end

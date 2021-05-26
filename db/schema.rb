@@ -44,74 +44,74 @@ ActiveRecord::Schema.define(version: 2021_05_25_084936) do
   end
 
   create_table "addresses", force: :cascade do |t|
-    t.string "address1"
-    t.string "address2"
-    t.string "town_or_city"
-    t.string "county"
-    t.string "post_code"
-    t.string "country"
-    t.integer "hostable_id"
+    t.string "address1",                   null: false
+    t.string "address2",                   null: false
+    t.string "town_or_city",               null: false
+    t.string "county",                     null: false
+    t.string "post_code",                  null: false
+    t.string "country",                    null: false
+    t.integer "hostable_id",               null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "hostable_type"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.text "body"
-    t.integer "commentable_id"
-    t.string "commentable_type"
+    t.integer "user_id",                   null: false
+    t.text "body",                         null: false
+    t.integer "commentable_id",            null: false
+    t.string "commentable_type",           null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "gym_id"
-    t.datetime "event_date"
-    t.string "event_name"
-    t.text "event_info"
+    t.integer "gym_id",                    null: false
+    t.datetime "event_date",               null: false
+    t.string "event_name",                 null: false
+    t.text "event_info",                   null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "fight_profiles", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "ring_name"
-    t.string "style"
-    t.integer "gym_id"
-    t.string "gender"
-    t.string "fight_weight"
+    t.integer "user_id",                   null: false
+    t.string "ring_name",                  null: false
+    t.string "style",                      null: false
+    t.integer "gym_id",                    null: false
+    t.string "gender",                     null: false
+    t.string "fight_weight",               null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "fight_records", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "style"
-    t.integer "win"
-    t.integer "draw"
-    t.integer "lose"
+    t.integer "user_id",                   null: false
+    t.string "style",                      null: false
+    t.integer "win",                       null: false
+    t.integer "draw",                      null: false
+    t.integer "lose",                      null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "fights", force: :cascade do |t|
-    t.integer "fighter_a_id"
-    t.integer "fighter_b_id"
-    t.string "style"
-    t.string "weight"
-    t.string "result"
-    t.boolean "draw"
-    t.integer "winner"
-    t.text "info"
-    t.integer "event_id"
+    t.integer "fighter_a_id",              null: false
+    t.integer "fighter_b_id",              null: false
+    t.string "style",                      null: false
+    t.string "weight",                     null: false
+    t.string "result",                     null: false
+    t.boolean "draw",                      null: false
+    t.integer "winner",                    null: false
+    t.text "info",                         null: false
+    t.integer "event_id",                  null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "friend_requests", force: :cascade do |t|
-    t.integer "requestor_id"
-    t.integer "receiver_id"
+    t.integer "requestor_id",              null: false
+    t.integer "receiver_id",               null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["receiver_id"], name: "index_friend_requests_on_receiver_id"
@@ -119,8 +119,8 @@ ActiveRecord::Schema.define(version: 2021_05_25_084936) do
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.integer "user_a_id"
-    t.integer "user_b_id"
+    t.integer "user_a_id",                 null: false
+    t.integer "user_b_id",                 null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_a_id"], name: "index_friendships_on_user_a_id"
@@ -128,40 +128,40 @@ ActiveRecord::Schema.define(version: 2021_05_25_084936) do
   end
 
   create_table "gyms", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
-    t.string "primary_style"
-    t.string "email"
-    t.string "website"
-    t.string "telephone"
+    t.integer "user_id",                   null: false
+    t.string "name",                       null: false
+    t.string "primary_style",              null: false
+    t.string "email",                      null: false
+    t.string "website",                    null: false
+    t.string "telephone",                  null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "num_prems"
+    t.integer "num_prems",                 null: false
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "liker_id"
-    t.integer "likeable_id"
-    t.string "likeable_type"
+    t.integer "liker_id",                  null: false
+    t.integer "likeable_id",               null: false
+    t.string "likeable_type",              null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "notifiable_id"
-    t.string "notifiable_type"
-    t.integer "recipient_id"
+    t.bigint "notifiable_id",              null: false
+    t.string "notifiable_type",            null: false
+    t.integer "recipient_id",              null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "actor_id"
-    t.string "action"
-    t.datetime "read_at"
+    t.integer "actor_id",                  null: false
+    t.string "action",                     null: false
+    t.datetime "read_at",                  null: false
   end
 
   create_table "posts", force: :cascade do |t|
-    t.text "body"
-    t.integer "user_id"
+    t.text "body",                         null: false
+    t.integer "user_id",                   null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

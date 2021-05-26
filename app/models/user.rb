@@ -31,10 +31,6 @@ class User < ApplicationRecord
     end
   end
 
-  def name
-    self.name = "#{User.first_name} #{User.last_name}"
-  end
-
   def friends
     join_statement = <<-SQL
       INNER JOIN friendships
@@ -45,13 +41,14 @@ class User < ApplicationRecord
         .where.not(id: id)
   end
 
-  def gravatar_avatar(user)
-    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-    "http://gravatar.com/#{gravatar_id}.png"
-  end
-
   def profile_picture
-    self.avatar.attached? ? avatar : provider_picture
+    if self.avatar.attached?
+      avatar
+    elsif provider_picture?
+      provider_picture
+    else
+      "/assets/defaultprofile.png"
+    end
   end
 
   def full_name

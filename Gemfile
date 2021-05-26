@@ -68,6 +68,8 @@ group :development do
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
 
   gem 'guard'
+
+  gem "letter_opener", group: :development
 end
 
 group :test do

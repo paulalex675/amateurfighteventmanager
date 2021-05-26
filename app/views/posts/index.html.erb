@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <div class="w-full container mx-auto">
-    <div class="flex flex-row flex-auto " >
-        <div class="flex flex-col items-left py-12 w-1/4">
+    <div class="flex md-flex-row flex-auto space-x-4  place-content-evenly" >
+        <div class="flex flex-col flex-auto items-left place-items-start w-1/4">
+          <div class=""><h2>All these upcoming events!</h2></div>
           <% Event.all.each do |event| %>
             <div class="">              
               <%= render partial: 'events/event', locals: { event: event } %>
@@ -27,6 +28,7 @@
         </div>
         
         <div class="flex flex-col items-right py12 w-1/4">
+          <div class=""><h2>Look at all these fighters!</h2></div>
           <% FightProfile.all.each do |fight_profile| %>
             <div class="">
               <%= render partial: 'fight_profiles/fighters', locals: { fight_profile: fight_profile } %>

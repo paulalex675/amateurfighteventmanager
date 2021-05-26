@@ -31,5 +31,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Fight Profile', new_fight_profile_path %>
+<% if current_user.fight_profiles.count < 1 %>
+  <%= link_to 'New Fight Profile', new_fight_profile_path %>
+<% end %>

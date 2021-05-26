@@ -6,4 +6,6 @@ class Gym < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :fighters, class_name: "User", :through => :fight_profiles
   has_many :hosted_events, class_name: "Event", foreign_key: "gym_id"
+
+  
 end
