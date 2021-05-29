@@ -15,13 +15,22 @@
       #menu-toggle:checked + #menu {
         display: block;
       }
+      .bg-black-alt  {
+			background:#191919;
+		}
+		.text-black-alt  {
+			color:#191919;
+		}
+		.border-black-alt {
+			border-color: #191919;
+		}
     </style>
   </head>
 
-  <body class="antialiased bg-gray-200">
+  <body class="antialiased bg-black-alt font-sans leading-normal tracking-normal text-blue-200 ">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <header class="lg:px-16 px-6 bg-white flex flex-wrap items-center lg:py-0 py-2">
+    <header class="lg:px-16 px-6 bg-black flex flex-wrap items-center lg:py-0 py-2">
       <%= render 'layouts/navbar' %>
     </header>
 

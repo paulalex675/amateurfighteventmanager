@@ -6,14 +6,15 @@
     <p>
       <div class="form-inputs">
         <%= f.input :body,
+                    label: "",
                     required: true, 
                     placeholder: 'Hmmm what to Post today?',
-                    input_html: { class: 'textarea' } %>
+                    input_html: { class: "text-area bg-gray-500 rounded-lg"} %>
       </div>
     </p>
     <p>
       <div class="form-actions">
-        <%= f.button :submit %>
+        <%= f.button :submit, class: "bg-blue-500 text-white p-1 rounded-full hover:bg-black shadow-2xl" %>
       </div>
     </p>
   <% end %>

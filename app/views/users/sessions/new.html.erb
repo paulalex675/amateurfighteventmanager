@@ -1,20 +1,40 @@
-<h2>Log in</h2>
+<main class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+  <section>
+    <h3 class="font-bold text-2xl">Welcome to Fight Book</h3>
+      <p class="text-gray-600 pt-2">Sign in to your account.</p>
+  </section>
+  <section class="mt-10">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="flex flex-col" >
+        <div class="mb-6 pt-3 rounded bg-gray-200">
+          <%= f.input :email,
+                      class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "email", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3" } %>
+        </div>
+        <div class="mb-6 pt-3 rounded bg-gray-200">
+          <%= f.input :password,
+                      class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                      required: false,
+                      input_html: { autocomplete: "current-password", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3" } %>
+        </div>
+        <div class="">
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+      </div>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+      <div class="">
+        <%= f.button :submit, "Log On",
+                     class: "bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" %>
+      </div>
+    <% end %>
+  </section>
+  <div class="flex justify-end">
+    <%= render "users/shared/links" %>
+  </div>    
+</main>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+    <div class="max-w-lg mx-auto text-center mt-12 mb-6">
+        <p class="text-white">Don't have an account? <a href="#" class="font-bold hover:underline">Sign up</a>.</p>
+    </div>

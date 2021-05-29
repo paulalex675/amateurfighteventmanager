@@ -7,7 +7,7 @@
 			<div class="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center" style="background-image: url('https://source.unsplash.com/MP0IUfwrn0A')"></div>
 			
       <a class="href">
-        <%= image_tag @user.profile_picture %>
+        <%= image_tag @user.profile_picture, class: "rounded-full w-30 h-30 border-2 border-green-500 " %>
       </a>
       <br>
       <h1 class="text-3xl font-bold pt-8 lg:pt-0"> <%= @user.full_name %> </h1>
@@ -24,23 +24,23 @@
         <h4>Notifications</h4><br>
         <%= render 'notifications/notifications' %>
         <% if @user.fight_profiles.count > 0 %>
-          <%= link_to 'Edit your fight profile', edit_fight_profile_path(@user.fight_profiles.first.id) %>
+          <%= link_to 'Edit your fight profile', edit_fight_profile_path(@user.fight_profiles.first.id), class: "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full" %>
         <% else %>
-          <%= link_to 'Set Up a fighter profile', new_fight_profile_path()%>
+          <%= link_to 'Set Up a fighter profile', new_fight_profile_path(), class: "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full" %>
         <% end %>
       <% else %>
         <% if Friendship.exists?(user_a_id: current_user.id, user_b_id: @user.id) || Friendship.exists?(user_a_id: @user.id, user_b_id: current_user.id) %>
           <div class="pt-12 pb-8">
 				    <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
-				      <%= button_to 'Un Friend!', friendship_path, method: :delete  %>
+				      <%= button_to 'Un Friend!', friendship_path, method: :delete, class: "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"  %>
 				    </button> 
 			    </div>
         <% elsif FriendRequest.exists?(requestor_id: current_user.id, receiver_id: @user.id) || FriendRequest.exists?(requestor_id: @user.id, receiver_id: current_user.id) %>
           <p> There is already a pending friendship request between the two of you, one of you needs to sort it.... </p>
         <% else %>
           <div class="pt-12 pb-8">
-				    <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
-				      <%= button_to 'Add friend', friend_requests_path, method: :post, params: { receiver_id: @user.id } %>
+				    <button >
+				      <%= button_to 'Add friend', friend_requests_path, method: :post, params: { receiver_id: @user.id }, class: "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full" %>
 				    </button> 
 			    </div>
           

@@ -1,32 +1,68 @@
-
-<div class="flex-1 flex justify-between items-center">
-      <a href="#">
-        logo  </a>
+<div class="inline-flex w-full bg-gray-900 fixed z-10 top-0 shadow justify-around">
+  <div class="flex-1 flex justify-evenly items-center bg-gray-900 shadow">
+    
+    <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
+    <input class="hidden" type="checkbox" id="menu-toggle" />
+    <div class="flex w-full justify-around p-1 md:p-2 sm:bg-gray-600 sm:rounded-full text-sm md:text-base" id="menu">
+      <nav>
+        <ul class="lg:flex items-center justify-evenly space-x-5 text-base text-gray-700 pt-4 lg:pt-0">
+          <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
+            <a class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400" href="#">logo
+            </a>
+          </li>
+          <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
+            <a class="" href="#">
+              <%= link_to 'Home', root_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white" %>
+            </a>
+          </li>
+          <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
+            <a class="" href="#">
+              <%= link_to 'Dojos', gyms_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white" %>
+            </a>
+          </li>
+          <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
+            
+              <%= link_to 'Fighters', users_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white"  %>
+            
+          </li>
+          <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
+            
+              <%= link_to 'Events', events_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white"  %>
+        
+          </li>
+          <% if user_signed_in? %>
+            <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
+              
+                <%= link_to 'My Profile', current_user, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white"  %>
+             
+            </li>
+            <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base shadow-outline-white ">
+              
+                <%= link_to "Notifications (#{current_user.notifications.count})", notifications_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white hover:text-green-400"  %>
+             
+            </li>
+            <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
+              
+                <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-red-400 text-white"  %>
+             
+            </li>
+          <% else %>
+            <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
+              
+                <%= link_to 'Sign In', new_user_session_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-green-400 text-white"  %>
+             
+            </li>
+          <% end %>
+          <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
+            <a href="#" class=>
+              <% if user_signed_in? %>
+                <%= image_tag current_user.profile_picture, class: "rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400 text-white" %>
+              <% end %>
+            </a>
+          </li>
+        </ul>        
+      </nav>
+    </div>
   </div>
+</div>
 
-   <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
-  <input class="hidden" type="checkbox" id="menu-toggle" />
-
-  <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
-    <nav>
-      <ul class="lg:flex items-center justify-between text-base text-gray-700 pt-4 lg:pt-0">
-        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Home', root_path %></a></li>
-        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Dojos', gyms_path %></a></li>
-        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Fighters', users_path %></a></li>
-        <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Events', events_path %></a></li>
-        <% if user_signed_in? %>
-          <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'My Profile', current_user %></a></li>
-          <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to "Notifications (#{current_user.notifications.count})", notifications_path %></a></li>
-          <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Log Out', destroy_user_session_path, method: :delete, class:"button is-info" %></a></li>
-        <% else %>
-          <li><a class="lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400" href="#"><%= link_to 'Sign In', new_user_session_path, class: "button is-info" %></a></li>
-        <% end %>
-      </ul>
-    </nav>
-    <a href="#" class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400">
-      <% if user_signed_in? %>
-        <%= image_tag current_user.profile_picture %>
-      <% end %>
-    </a>
-
-  </div>

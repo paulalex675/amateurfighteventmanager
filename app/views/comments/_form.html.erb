@@ -4,10 +4,10 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :body, placeholder: "Add a comment" %>    
+    <%= f.input :body, placeholder: "Add a comment", input_html: { class: "text-area bg-gray-500 rounded-lg"} %>    
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "bg-blue-500 text-white p-1 rounded-full hover:bg-black shadow-lg" %>
   </div>
 <% end %>

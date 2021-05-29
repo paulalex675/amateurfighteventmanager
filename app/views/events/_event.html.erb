@@ -1,19 +1,29 @@
-<p>
-  <strong>Hosting Gym:</strong>
-  <%= event.host.name %>
-</p>
 
-<p>
-  <strong>Event date:</strong>
-  <%= event.event_date %>
-</p>
+  
+<div class="bg-gray-700 flex flex-col justify-end rounded-lg p-6 border-white border-2">
+  <div class="flex flex-col shadow my-4 bg-transparent border-green-700 space-y-1">
+    <div>
+      <div class="bg-gray-900 flex flex-col justify-start p-6 rounded-lg shadow-2xl">
+        <p class="text-xl pb-4">
+          <strong>Hosting Gym:</strong>
+          <%= event.host.name %>
+        </p>
 
-<p>
-  <strong>Event name:</strong>
-  <%= event.event_name %>
-</p>
+        <p class="text-xl pb-4">
+          <strong>Event date:</strong>
+          <%= event.event_date %>
+        </p>
 
-<p>
-  <strong>Event info:</strong>
-  <%= event.event_info %>
-</p> 
+        <p class="text-xl pb-4">
+          <strong>Event name:</strong>
+          <%= event.event_name %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Event info:</strong>
+          <%= event.event_info %>
+        </p> 
+      </div>
+    </div>
+  </div>
+</div>

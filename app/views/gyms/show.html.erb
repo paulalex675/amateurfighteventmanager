@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>    
 
     <p>
-      <a class="href"><%= image_tag @gym.avatar %></a>    
+      <% if @gym.avatar.attached? %>
+        <a class="href"><%= image_tag @gym.avatar %></a>    
+      <% end %>
     </p>
     <p>
       <strong>User:</strong>
@@ -47,8 +49,10 @@
     </p>
     <% if @gym.user == current_user %>
       <div>
-      <strong>Add an address to your gym</strong>
-      <%= render partial: 'addresses/form', locals: { hostable: @gym }  %>      
+        <strong>Add an address to your gym</strong>
+        <% (@gym.num_prems - @gym.addresses.count).times do %>
+          <%= render partial: 'addresses/form', locals: { hostable: @gym }  %>
+        <% end %>  
       </div>
       <div>
         <%= link_to 'Host a new event', new_event_path %>

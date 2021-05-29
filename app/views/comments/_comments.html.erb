@@ -1,20 +1,31 @@
 <h3>Comments<h3>
 <div class="flex flex-col shadow my-4">
-  <div class="bg-gray-200 flex flex-col justify-end p-6">
+  <div class="bg-gray-700 flex flex-col justify-end rounded-lg p-6">
     <% commentable.comments.each do |comment| %>
-      <p class="text-xl pb-4">
-        <%= comment.body %>
-        <a href="#" class="text=xl font-bold hover:text-green-700 pb-4">
-          <%= link_to "#{comment.user.first_name}", user_path(comment.user_id) %>
-        </a>
-      </p>
+      <div>
+        <p class="text-xl pb-4 rounded-lg">
+          <%= comment.body %>
+        </p>
+        <p>
+          <% if comment.user.username == "" %>
+            <% user_label = comment.user.first_name + " " + post.user.last_name %>
+          <% else %>
+            <% user_label = comment.user.username %>
+          <% end %>
+          <a href="#" class="text=3x1 font-bold hover:text-gray-700 pb-4 border-blue-700 bg-transparent shadow-lg">
+            <%= link_to "#{user_label}", user_path(comment.user_id), class: "text=3x1 font-bold hover:text-gray-700 pb-4 border-blue-700 bg-transparent shadow-lg" %>
+          </a>     
+          <div><%= image_tag comment.user.profile_picture, class: "rounded-full w-10 h-10 border-2 border-black" %></div>       
+        </p>
+
+      </div>
       <p>
         <% if comment.user_id == current_user.id %>
             <div><%= link_to "Edit", edit_post_path(comment) %></div>
         <% else %>
           <% pre_like = comment.likes.find { |like| like.liker_id == current_user.id } %>
           <% if pre_like %>
-            <%= link_to "Un-Like (#{comment.likes.count})", like_path(pre_like), method: :delete %>
+            <%= link_to "Un-Like (#{comment.likes.count})", like_path(pre_like), method: :delete, class: "bg-blue-500 text-white p-1 rounded-full hover:bg-black" %>
           <% else %>
             <%= render partial: 'likes/like_button', locals: { likeable: comment } %>
           <% end %>
