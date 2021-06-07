@@ -20,57 +20,54 @@
         </div>
     </div>
     <div class="flex flex-col text-left w-2/3">
-        <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-            Owner: <%= @gym.user.first_name + " " + @gym.user.last_name %>
-        </p>
-        <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-          <%= "Is a #{@gym.primary_style} gym in the #{@gym.addresses.first.town_or_city} area, they currently have #{@gym.fighters.count} active fighters fighting out of their gym." %>
-        </p>
-        <div class="">
-          <% if current_user.id == @gym.user_id %>
-            <p>
-              <%= link_to 'Edit my gym', edit_gym_path(@gym), class: "btn post" %>
-            </p>
-          <% else %>
-            <p>
-              <% pre_like = @gym.likes.find { |like| like.liker_id == current_user.id } %>
-              <% if pre_like %>
-                <%= link_to "Un-Like (#{@gym.likes.count})", like_path(pre_like), method: :delete, class: "btn like unlike" %>
-               <% else %>
-                 <%= render partial: 'likes/like_button', locals: { likeable: @gym } %>
-               <% end %>
-            </p>
-          <% end %>
-        </div>
-        <div>
-            <h2 class="text-xl font-bold pt-8 lg:pt-0">Find us</h2>
-            <p>
-                <strong>Address:</strong>
-                <% @gym.addresses.each do |address| %>
-                    <p><%= address.address1 %></p>
-                    <p><%= address.address2 %></p>
-                    <p><%= address.town_or_city %></p>
-                    <p><%= address.county %></p>
-                    <p><%= address.post_code %></p>
-                    <p><%= address.country %></p>
-                <% end %>
-            </p>
-            <p>
-                <strong>Email:</strong>
-                <%= @gym.email %>   
-            </p>
-            <p>
-                <strong>Website:</strong>
-                <%= @gym.website %>
-            </p>
-            <p>
-                <strong>Telephone:</strong>
-                <%= @gym.telephone %>
-            </p>
-            <div>
-                placeholder for map
-            </div>
-        </div>
+      <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
+        <%= "Is a #{@gym.primary_style} gym in the #{@gym.addresses.first.town_or_city} area, they currently have #{@gym.fighters.count} active fighters fighting out of their gym." %>
+      </p>
+      <div class="">
+        <% if current_user.id == @gym.user_id %>
+          <p>
+            <%= link_to 'Edit my gym', edit_gym_path(@gym), class: "btn post" %>
+          </p>
+        <% else %>
+          <p>
+            <% pre_like = @gym.likes.find { |like| like.liker_id == current_user.id } %>
+            <% if pre_like %>
+              <%= link_to "Un-Like (#{@gym.likes.count})", like_path(pre_like), method: :delete, class: "btn like unlike" %>
+              <% else %>
+                <%= render partial: 'likes/like_button', locals: { likeable: @gym } %>
+              <% end %>
+          </p>
+        <% end %>
+      </div>
+      <div>
+          <h2 class="text-xl font-bold pt-8 lg:pt-0">Find us</h2>
+          <p>
+              <strong>Address:</strong>
+              <% @gym.addresses.each do |address| %>
+                  <p><%= address.address1 %></p>
+                  <p><%= address.address2 %></p>
+                  <p><%= address.town_or_city %></p>
+                  <p><%= address.county %></p>
+                  <p><%= address.post_code %></p>
+                  <p><%= address.country %></p>
+              <% end %>
+          </p>
+          <p>
+              <strong>Email:</strong>
+              <%= @gym.email %>   
+          </p>
+          <p>
+              <strong>Website:</strong>
+              <%= @gym.website %>
+          </p>
+          <p>
+              <strong>Telephone:</strong>
+              <%= @gym.telephone %>
+          </p>
+          <div>
+              placeholder for map
+          </div>
+      </div>
     </div>
     <div class="flex flex-col text-left w-1/3">
         <div>

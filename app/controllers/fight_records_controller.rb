@@ -3,7 +3,7 @@ class FightRecordsController < ApplicationController
 
   # GET /fight_records or /fight_records.json
   def index
-    @fight_records = FightRecord.all
+    @fight_records = FightRecord.order(:fight_score)
   end
 
   # GET /fight_records/1 or /fight_records/1.json
@@ -17,16 +17,23 @@ class FightRecordsController < ApplicationController
 
   # GET /fight_records/1/edit
   def edit
+
+  end
+
+  def calc_score
   end
 
   # POST /fight_records or /fight_records.json
   def create
-    @fight_record = FightRecord.new(fight_record_params)
+    @user = current_user
+    @fight_record = @user.fight_records.new(fight_record_params)
+    
 
     respond_to do |format|
       if @fight_record.save
-        format.html { redirect_to @fight_record, notice: "Fight record was successfully created." }
+        format.html { redirect_to user_path(@fight_record.user), notice: "Fight record was successfully created." }
         format.json { render :show, status: :created, location: @fight_record }
+        @fight_record.update(fight_score: (@fight_record.win.to_i * 3) + @fight_record.draw)
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @fight_record.errors, status: :unprocessable_entity }
@@ -64,6 +71,6 @@ class FightRecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fight_record_params
-      params.require(:fight_record).permit(:user_id, :style, :win, :draw, :lose)
+      params.require(:fight_record).permit(:user_id, :style, :win, :draw, :lose, :fight_score)
     end
 end

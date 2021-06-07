@@ -38,3 +38,31 @@
   <%= link_to 'Destroy', @fight_profile, method: :delete, data: { confirm: 'Are you sure?' } %>|
 <% end %>
 <%= link_to 'Back', fight_profiles_path %>
+
+<p class="text-xl pb-4">
+          <div class="flex flex-col">
+            <strong>Fight Records:</strong><br>
+            <table class="table-auto border-collapse rounded-lg p-2">
+              <tr class="py-1">
+                <th class="p-2" scope="col">Style</th>
+                <th class="p-2" scope="col">Wins</th>
+                <th class="p-2" scope="col">Draws</th>
+                <th class="p-2" scope="col">Losses</th>
+                <th class="p-2" scope="col">Fight Score</th>
+                <th class="p-2" scope="col">Win %</th>
+              </tr>
+              <% @fight_profile.user.fight_records.each do |record| %>
+                <tr>
+                  <td class="p-2"><%= record.style %></td>
+                  <td class="p-2"><%= record.win %></td>
+                  <td class="p-2"><%= record.draw %></td>
+                  <td class="p-2"><%= record.lose %></td>
+                  <td class="p-2"><%= record.fight_score %></td>
+                  <td class="p-2"><%= record.win_percentage %></td>
+                </tr>        
+                <% if current_user.id == @fight_profile.user_id %>
+                <%= button_to 'Update', edit_fight_record_path, record %>    
+              <% end %>
+            </table>
+          </div>
+        </p>

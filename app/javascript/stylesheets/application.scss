@@ -40,6 +40,13 @@ table {
 .nav_item:hover {
     @apply border-indigo-400;
 }
+.frm {
+    @apply bg-gray-800;
+    @apply text-white;
+    @apply rounded-lg;
+    @apply py-1;
+    @apply px-5;
+}
 
 @import "tailwindcss/utilities";
 

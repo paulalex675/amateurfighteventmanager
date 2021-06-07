@@ -6,6 +6,7 @@ class FightRecord < ApplicationRecord
   end
 
   def win_percentage
-    (self.win/self.total_fights.to_f) * 100
+    ((self.win/self.total_fights.to_f) * 100).round(1)
   end
+
 end

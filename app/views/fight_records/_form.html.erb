@@ -4,14 +4,15 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :user_id %>
-    <%= f.input :style %>
-    <%= f.input :win %>
-    <%= f.input :draw %>
-    <%= f.input :lose %>
+    <% f.hidden_field :user_id %>
+    <%= f.input :style, input_html: { class: "frm" } %>
+    <%= f.input :win, input_html: { class: "frm" } %>
+    <%= f.input :draw, input_html: { class: "frm" } %>
+    <%= f.input :lose, input_html: { class: "frm" } %>
+    
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn post" %>
   </div>
 <% end %>
