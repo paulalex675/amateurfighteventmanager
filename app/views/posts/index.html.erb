@@ -1,9 +1,9 @@
 
 
 <div class="w-full container mx-auto bg-grey-900 shadow-outline">
-  <div class="flex md-flex-row flex-auto space-x-10 place-content-between shadow-2xl" >
+  <div class="flex flex-row flex-auto space-x-10 place-content-between shadow-2xl" >
 
-    <div class="flex flex-col items-center space-x-1 space-y-10 py-12 w-1/4">
+    <div class="flex flex-col items-center space-x-1 space-y-1 py-12 w-1/4">
       <div class="bg-gray-700 flex flex-col rounded-lg p-6 border-white border-2">
         <div class="bg-transparent w-full flex flex-col items-center text-2xl px-3">
           <h2>Look at all these upcoming events!</h2>
@@ -11,7 +11,7 @@
       </div>
                   
       <% Event.all.each do |event| %>
-        <div  class="bg-gray-900 w-full md:w-2/3 flex flex-col items-center px-3">
+        <div  class="bg-gray-900 w-full flex flex-col items-center px-3">
           <%= render partial: 'events/event', locals: { event: event } %>
         </div>
       <% end %>         
@@ -29,21 +29,21 @@
       </div>
                   
       <% @posts.each do |post| %>
-        <div  class="bg-gray-900 w-full md:w-2/3 flex flex-col items-center px-3">
+        <div  class="bg-gray-900 w-full flex flex-col items-center px-3">
           <%= render partial: 'posts/post', locals: { post: post} %>
         </div>
       <% end %>         
     </div>
 
-    <div class="flex flex-col items-center space-x-1 space-y-10 py-12 w-1/4">
+    <div class="flex flex-col items-center space-x-1 space-y-1 py-12 w-1/4">
       <div class="bg-gray-700 flex flex-col rounded-lg p-6 border-white border-2">
-        <div class="bg-transparent w-full flex flex-col text-2xl items-center px-3">
-          <h2>Look at all these fighters!</h2>
+        <div class="bg-transparent w-full flex flex-col items-center text-2xl px-3">
+          <h2>Look at the TOP 5 Fighters!
         </div>
       </div>
                   
       <% FightProfile.all.each do |fight_profile| %>
-        <div  class="bg-gray-900 w-full md:w-2/3 flex flex-col items-center px-3">
+        <div  class="bg-gray-900 w-full flex flex-col items-center px-3">
           <%= render partial: 'fight_profiles/fighters', locals: { fight_profile: fight_profile } %>
         </div>
       <% end %>         

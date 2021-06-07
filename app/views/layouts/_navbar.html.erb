@@ -1,10 +1,10 @@
-<div class="inline-flex w-full bg-gray-900 fixed z-10 top-0 shadow justify-around">
-  <div class="flex-1 flex justify-evenly items-center bg-gray-900 shadow">
+<div class="inline-flex bg-gray-900 fixed w-auto flex-wrap top-0 shadow justify-around">
+  <div class="flex-1 flex justify-evenly w-auto flex-wrap items-center bg-gray-900 shadow">
     
     <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
     <input class="hidden" type="checkbox" id="menu-toggle" />
-    <div class="flex w-full justify-around p-1 md:p-2 sm:bg-gray-600 sm:rounded-full text-sm md:text-base" id="menu">
-      <nav>
+    <div class="flex w-auto justify-around md:p-2 sm:bg-gray-600 sm:rounded-full text-sm md:text-base" id="menu">
+      <nav class="">
         <ul class="lg:flex items-center justify-evenly space-x-5 text-base text-gray-700 pt-4 lg:pt-0">
           <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
             <a class="rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400" href="#">logo
@@ -12,44 +12,44 @@
           </li>
           <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
             <a class="" href="#">
-              <%= link_to 'Home', root_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white" %>
+              <%= link_to 'Home', root_path, class: "nav_item lg:p-4" %>
             </a>
           </li>
           <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
             <a class="" href="#">
-              <%= link_to 'Dojos', gyms_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white" %>
+              <%= link_to 'Dojos', gyms_path, class: "nav_item lg:p-4" %>
             </a>
           </li>
           <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
             
-              <%= link_to 'Fighters', users_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white"  %>
+              <%= link_to 'Fighters', fight_profiles_path, class: "nav_item lg:p-4"  %>
             
           </li>
           <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
             
-              <%= link_to 'Events', events_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white"  %>
+              <%= link_to 'Events', events_path, class: "nav_item lg:p-4"  %>
         
           </li>
           <% if user_signed_in? %>
             <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
               
-                <%= link_to 'My Profile', current_user, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white"  %>
+                <%= link_to 'My Profile', current_user, class: "nav_item lg:p-4"  %>
              
             </li>
             <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base shadow-outline-white ">
               
-                <%= link_to "Notifications (#{current_user.notifications.count})", notifications_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-indigo-400 text-white hover:text-green-400"  %>
+                <%= link_to "Notifications (#{current_user.notifications.count})", notifications_path, class: "nav_item lg:p-4 hover:text-green-400"  %>
              
             </li>
             <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
               
-                <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-red-400 text-white"  %>
+                <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav_item lg:p-4 hover:text-red-600"  %>
              
             </li>
           <% else %>
             <li class="flex flex-wrap p-1 md:p-2 sm:bg-gray-900 sm:rounded-full text-sm md:text-base">
               
-                <%= link_to 'Sign In', new_user_session_path, class: "lg:p-4 py-3 px-0 block border-b-2 border-transparent hover:border-green-400 text-white"  %>
+                <%= link_to 'Sign In', new_user_session_path, class: "nav_item lg:p-4"  %>
              
             </li>
           <% end %>

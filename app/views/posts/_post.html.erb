@@ -26,7 +26,7 @@
           <% else %>
             <% pre_like = post.likes.find { |like| like.liker_id == current_user.id } %>
             <% if pre_like %>
-              <%= link_to "Un-Like (#{post.likes.count})", like_path(pre_like), method: :delete, class: "bg-blue-500 text-white p-1 rounded-full hover:bg-red-800 shadow-lg" %>
+              <%= link_to "Un-Like (#{post.likes.count})", like_path(pre_like), method: :delete, class: "btn like unlike" %>
             <% else %>
               <%= render partial: 'likes/like_button', locals: { likeable: post } %>
             <% end %>

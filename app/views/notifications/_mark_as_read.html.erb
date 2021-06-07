@@ -1,10 +1,9 @@
-
-<%= simple_form_for [likeable, Like.new] do |f| %>
+<%= simple_form_for(@notification) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-
+  
   <div class="form-actions">
-    <%= f.submit "Like #{likeable.likes.count}", class: "btn like" %>
+    <%= f.submit "Mark as Read", class: "btn" %>
   </div>
 <% end %>

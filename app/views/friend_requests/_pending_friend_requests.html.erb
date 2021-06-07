@@ -14,7 +14,7 @@
     <% current_user.friend_requests_as_receiver.each do |friend_request| %>
       <ul>
         <li>You have a friend request from <%= friend_request.requestor.first_name %> <%= friend_request.requestor.last_name %></li>
-        <li><%= button_to friendships_path, method: :post, class: 'add-friend', params: { friend_request_id: friend_request.id } do %>
+        <li><%= button_to friendships_path, method: :post, class: 'add-friend', params: { friend_request_id: friend_request.id }, class: "btn post" do %>
           <p>Add Friend</p>
         <% end %>
         <%= link_to 'Destroy', friend_request, method: :delete, data: { confirm: 'Are you sure?' } %></li>

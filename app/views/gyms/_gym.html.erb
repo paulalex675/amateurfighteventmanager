@@ -1,0 +1,38 @@
+<div class="bg-gray-700 flex flex-col justify-end rounded-lg p-6 border-white border-2">
+  <div class="flex flex-col shadow my-4 bg-transparent border-green-700 space-y-10">
+    <div>
+      <div class="bg-gray-900 flex flex-row justify-start p-6 rounded-lg shadow-2xl space-x-4">
+
+        <p class="text-xl pb-4">
+          <strong>Gym Owner:</strong>
+          <%= gym.user.first_name + " " + gym.user.last_name %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Gym Name:</strong>
+          <%= link_to "#{gym.name}", gym, class: "hover:text-blue-800" %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Gym Style:</strong>
+          <%= gym.primary_style %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Gym Email:</strong>
+          <%= gym.email %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Gym Website:</strong>
+          <%= link_to "#{gym.website}", class: "hover:text-blue-800" %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Gym Phone:</strong>
+          <%= gym.telephone %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

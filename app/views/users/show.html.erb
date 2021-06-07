@@ -22,17 +22,17 @@
         <%= link_to 'Edit my info', edit_registration_path(@user) %>
         <%= render 'friend_requests/pending_friend_requests' %><br>
         <h4>Notifications</h4><br>
-        <%= render 'notifications/notifications' %>
+        <%= render 'notifications/notifications' %><br>
         <% if @user.fight_profiles.count > 0 %>
-          <%= link_to 'Edit your fight profile', edit_fight_profile_path(@user.fight_profiles.first.id), class: "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full" %>
+          <%= link_to 'Edit your fight profile', edit_fight_profile_path(@user.fight_profiles.first.id), class: "btn post" %>
         <% else %>
-          <%= link_to 'Set Up a fighter profile', new_fight_profile_path(), class: "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full" %>
+          <%= link_to 'Set Up a fighter profile', new_fight_profile_path(), class: "btn post" %>
         <% end %>
       <% else %>
         <% if Friendship.exists?(user_a_id: current_user.id, user_b_id: @user.id) || Friendship.exists?(user_a_id: @user.id, user_b_id: current_user.id) %>
           <div class="pt-12 pb-8">
 				    <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
-				      <%= button_to 'Un Friend!', friendship_path, method: :delete, class: "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"  %>
+				      <%= button_to 'Un Friend!', friendship_path, method: :delete, class: "btn post"  %>
 				    </button> 
 			    </div>
         <% elsif FriendRequest.exists?(requestor_id: current_user.id, receiver_id: @user.id) || FriendRequest.exists?(requestor_id: @user.id, receiver_id: current_user.id) %>
@@ -40,7 +40,7 @@
         <% else %>
           <div class="pt-12 pb-8">
 				    <button >
-				      <%= button_to 'Add friend', friend_requests_path, method: :post, params: { receiver_id: @user.id }, class: "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full" %>
+				      <%= button_to 'Add friend', friend_requests_path, method: :post, params: { receiver_id: @user.id }, class: "btn post" %>
 				    </button> 
 			    </div>
           
@@ -49,6 +49,7 @@
       <div>
       
       </div>
+      <br>
       <div>
         <p>Here are all of <%=@user.first_name%>'s posts</p><br>
         <table>
@@ -62,7 +63,7 @@
           <% @user.posts.each do |post| %>
             <tr>
               
-              <td><%= post.body %></td>
+              <td class="rounded-lg bg-gray-200 text-black"><%= post.body %></td>
             </tr>
           <% end %>
         </tbody>

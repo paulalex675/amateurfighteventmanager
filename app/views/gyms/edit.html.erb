@@ -1,6 +1,11 @@
 <h1>Editing Gym</h1>
 
 <%= render 'form', gym: @gym %>
-
+<div>
+    <strong>Add an address to your gym</strong>
+    <% (@gym.num_prems - @gym.addresses.count).times do %>
+        <%= render partial: 'addresses/form', locals: { hostable: @gym }  %>
+    <% end %>  
+</div>
 <%= link_to 'Show', @gym %> |
 <%= link_to 'Back', gyms_path %>

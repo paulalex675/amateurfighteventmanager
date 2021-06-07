@@ -1,36 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="w-100 container mx-auto bg-grey-900 shadow-outline">
+  <div class="flex md-flex-row flex-auto space-x-10 place-content-between shadow-2xl" >
 
-<h1>Fight Profiles</h1>
+    <div class="flex flex-col items-center space-x-1 space-y-10 py-12 w-full">
+      <div class="bg-gray-700 flex flex-col rounded-lg p-6 border-white border-2">
+        <div class="bg-transparent w-full flex flex-col items-center text-2xl px-3">
+          <h1>Fighters!</h1>
+        </div>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Ring name</th>
-      <th>Style</th>
-      <th>Gym</th>
-      <th>Gender</th>
-      <th>Fight weight</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @fight_profiles.each do |fight_profile| %>
-      <tr>
-        <td><%= fight_profile.user.full_name %></td>
-        <td><%= fight_profile.ring_name %></td>
-        <td><%= fight_profile.style %></td>
-        <td><%= fight_profile.gym_id %></td>
-        <td><%= fight_profile.gender %></td>
-        <td><%= fight_profile.fight_weight %></td>
-        <td><%= link_to 'Show', fight_profile %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if current_user.fight_profiles.count < 1 %>
-  <%= link_to 'New Fight Profile', new_fight_profile_path %>
-<% end %>
+      <% @fight_profiles.each do |fight_profile| %>
+        <div  class="bg-gray-900 w-full md:w-2/3 flex flex-col items-center px-3">
+          <%= render partial: 'fighter', locals: { fighter: fight_profile } %>
+        </div>
+      <% end %>         
+    </div>
+  </div>
+</div>

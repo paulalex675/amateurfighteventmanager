@@ -1,10 +1,45 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+table {
+    @apply bg-gray-500;
+    @apply border-collapse;
+    @apply border-black;
+    @apply rounded-lg;
+}
 .btn {
-
-
+    @apply rounded-full;
+    @apply text-white;
+    @apply p-1;
+    @apply border-white;
+    @apply border-2;
+    @apply shadow-2xl
+}
+.btn:hover {
+    @apply bg-black;
 }
 
+.like {
+    @apply bg-blue-500;    
+}
+.unlike:hover {
+    @apply bg-red-800;
+    @apply shadow-lg;
+}
+.post {
+    @apply bg-green-700
+}
+.nav_item {
+    @apply p-4;
+    @apply py-3;
+    @apply px-0;
+    @apply block;
+    @apply border-b-2;
+    @apply border-transparent;
+    @apply text-white;
+}
+.nav_item:hover {
+    @apply border-indigo-400;
+}
 
 @import "tailwindcss/utilities";
 

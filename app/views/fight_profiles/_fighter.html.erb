@@ -1,0 +1,66 @@
+<div class="bg-gray-700 flex flex-col justify-end rounded-lg p-6 border-white border-2">
+  <div class="flex flex-col shadow my-4 bg-transparent border-green-700 space-y-10">
+    <div>
+      <div class="bg-gray-900 flex flex-row justify-start p-6 rounded-lg shadow-2xl space-x-4">
+
+        <p class="text-xl pb-4">
+          <strong>Name:</strong>
+          <%= fighter.user.first_name + " " + fighter.user.last_name %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Ring Name:</strong>
+          <%= fighter.ring_name %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Style:</strong>
+          <%= fighter.style %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Weight:</strong>
+          <%= fighter.fight_weight %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Gym Name:</strong>
+          <%= fighter.gym.name %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <strong>Gender:</strong>
+          <% if fighter.gender == '1' %>
+            Male
+          <% else %>
+            Female 
+          <% end %>
+        </p>
+
+        <p class="text-xl pb-4">
+          <div class="flex flex-col">
+            <strong>Record:</strong><br>
+            <table class="table-auto border-collapse rounded-lg p-2">
+              <tr class="py-1">
+                <th class="p-2" scope="col">Style</th>
+                <th class="p-2" scope="col">Wins</th>
+                <th class="p-2" scope="col">Draws</th>
+                <th class="p-2" scope="col">Losses</th>
+                <th class="p-2" scope="col">Win %</th>
+              </tr>
+              <% fighter.user.fight_records.each do |record| %>
+                <tr>
+                  <td class="p-2"><%= record.style %></td>
+                  <td class="p-2"><%= record.win %></td>
+                  <td class="p-2"><%= record.draw %></td>
+                  <td class="p-2"><%= record.lose %></td>
+                  <td class="p-2"><%= record.win_percentage %>
+                </tr>            
+              <% end %>
+            </table>
+          </div>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
