@@ -21,7 +21,7 @@
     </div>
     <div class="flex flex-col text-left w-2/3">
       <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
-        <%= "Is a #{@gym.primary_style} gym in the #{@gym.addresses.first.town_or_city} area, they currently have #{@gym.fighters.count} active fighters fighting out of their gym." %>
+        <%= "Is a #{@gym.style.name} gym in the #{@gym.addresses.first.town_or_city} area, they currently have #{@gym.fighters.count} active fighters fighting out of their gym." %>
       </p>
       <div class="">
         <% if current_user.id == @gym.user_id %>

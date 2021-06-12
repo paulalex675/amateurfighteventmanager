@@ -15,7 +15,7 @@
 
         <p class="text-xl pb-4">
           <strong>Style:</strong>
-          <%= fighter.style %>
+          <%= fighter.style.name %>
         </p>
 
         <p class="text-xl pb-4">
@@ -51,7 +51,7 @@
               </tr>
               <% fighter.user.fight_records.each do |record| %>
                 <tr>
-                  <td class="p-2"><%= record.style %></td>
+                  <td class="p-2"><%= record.style.name %></td>
                   <td class="p-2"><%= record.win %></td>
                   <td class="p-2"><%= record.draw %></td>
                   <td class="p-2"><%= record.lose %></td>

@@ -9,33 +9,33 @@
     <%= f.input :first_name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "first_name" } %>
+                input_html: { autocomplete: "first_name", class: "text-area bg-gray-500 rounded-lg" } %>
     <%= f.input :last_name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "last_name" } %>
+                input_html: { autocomplete: "last_name", class: "text-area bg-gray-500 rounded-lg" } %>
     <%= f.input :username,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "username" } %>
+                input_html: { autocomplete: "username", class: "text-area bg-gray-500 rounded-lg" } %>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "email" }%>
+                input_html: { autocomplete: "email", class: "text-area bg-gray-500 rounded-lg" }%>
     <%= f.input :bio,
                 autofocus: true,
-                input_html: { autocomplete: "say something about yourself" } %>
+                input_html: { autocomplete: "say something about yourself", class: "text-area bg-gray-500 rounded-lg" } %>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password", class: "text-area bg-gray-500 rounded-lg" } %>
     <%= f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password", class: "text-area bg-gray-500 rounded-lg" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class: "btn post" %>
   </div>
 <% end %>
 <%= render "users/shared/links" %>

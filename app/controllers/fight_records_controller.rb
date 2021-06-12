@@ -71,6 +71,6 @@ class FightRecordsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fight_record_params
-      params.require(:fight_record).permit(:user_id, :style, :win, :draw, :lose, :fight_score)
+      params.require(:fight_record).permit(:user_id, :style_id, :win, :draw, :lose, :fight_score)
     end
 end

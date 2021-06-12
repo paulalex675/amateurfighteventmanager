@@ -18,7 +18,7 @@
     <% @fight_records.each do |fight_record| %>
       <tr>
         <td><%= fight_record.user_id %></td>
-        <td><%= fight_record.style %></td>
+        <td><%= fight_record.style.name %></td>
         <td><%= fight_record.win %></td>
         <td><%= fight_record.draw %></td>
         <td><%= fight_record.lose %></td>

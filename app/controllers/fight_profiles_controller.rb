@@ -25,7 +25,7 @@ class FightProfilesController < ApplicationController
 
     respond_to do |format|
       if @fight_profile.save
-        format.html { redirect_to @fight_profile, notice: "Fight profile was successfully created." }
+        format.html { redirect_to user_path(current_user), notice: "Fight profile was successfully created." }
         format.json { render :show, status: :created, location: @fight_profile }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,6 +64,6 @@ class FightProfilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fight_profile_params
-      params.require(:fight_profile).permit(:user_id, :ring_name, :style, :gym_id, :gender, :fight_weight)
+      params.require(:fight_profile).permit(:user_id, :ring_name, :style_id, :gym_id, :gender, :fight_weight)
     end
 end

@@ -6,14 +6,14 @@
   <div class="form-inputs">
     <%= f.file_field :avatar %>
     <%= f.input :name, require: true %>
-    <%= f.input :primary_style, require: true %>
+    <%= f.input :primary_style, collection: Style.all, prompt: 'What is the primary style at your gym?', input_html: { class: "frm" }, require: true %>
     <%= f.input :email, require: true %>
     <%= f.input :website %>
     <%= f.input :telephone, require: true %>
     <%= f.input :num_prems, label: "Number of Premises", collection: 0..10 %>
   </div>
 
-  <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+  <button class="btn post">
     <%= f.button :submit, "Add Gym" %>
   </button>
 <% end %>

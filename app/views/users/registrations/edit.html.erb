@@ -17,15 +17,15 @@
 
         <%= f.file_field :avatar %>
 
-        <%= f.input :first_name, autofocus: false, placeholder: 'First Name' %>
+        <%= f.input :first_name, autofocus: false, placeholder: 'First Name', class: "text-area bg-gray-500 rounded-lg" %>
 
-        <%= f.input :last_name, autofocus: false, placeholder: 'Last Name' %>
+        <%= f.input :last_name, autofocus: false, placeholder: 'Last Name', class: "text-area bg-gray-500 rounded-lg" %>
 
-        <%= f.input :username, autofocus: false, placeholder: 'Username' %>
+        <%= f.input :username, autofocus: false, placeholder: 'Username', class: "text-area bg-gray-500 rounded-lg" %>
 
-        <%= f.input :email, autofocus: false, placeholder: 'Email' %>
+        <%= f.input :email, autofocus: false, placeholder: 'Email', class: "text-area bg-gray-500 rounded-lg" %>
 
-        <%= f.input :bio, autofocus: false, placeholder: 'Say something about yourself' %>
+        <%= f.input :bio, autofocus: false, placeholder: 'Say something about yourself', class: "text-area bg-gray-500 rounded-lg" %>
 
         
 
@@ -36,18 +36,18 @@
         <%= f.input :password,
                     hint: "leave it blank if you don't want to change it",
                     required: false,
-                    input_html: { autocomplete: "new-password" } %>
+                    input_html: { autocomplete: "new-password", class: "text-area bg-gray-500 rounded-lg" } %>
         <%= f.input :password_confirmation,
                     required: false,
-                    input_html: { autocomplete: "new-password" } %>
+                    input_html: { autocomplete: "new-password", class: "text-area bg-gray-500 rounded-lg" } %>
         <%= f.input :current_password,
                     hint: "we need your current password to confirm your changes",
                   
-                    input_html: { autocomplete: "current-password" } %>
+                    input_html: { autocomplete: "current-password", class: "text-area bg-gray-500 rounded-lg" } %>
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, "Update" %>
+        <%= f.button :submit, "Update", class: "btn post" %>
       </div>
     <% end %>
 

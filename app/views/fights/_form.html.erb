@@ -6,16 +6,15 @@
   <div class="form-inputs">
     <%= f.input :fighter_a_id %>
     <%= f.input :fighter_b_id %>
-    <%= f.input :style %>
+    <%= f.input :style_id, collection: Style.all, prompt: "Pick a style for this fight", input_html: { class: "frm" } %>
     <%= f.input :weight %>
     <%= f.input :result %>
     <%= f.input :draw %>
     <%= f.input :winner %>
     <%= f.input :info %>
-    <%= f.input :event_id %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn post" %>
   </div>
 <% end %>

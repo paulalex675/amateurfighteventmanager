@@ -65,6 +65,6 @@ class GymsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def gym_params
-      params.require(:gym).permit(:user_id, :name, :primary_style, :email, :website, :telephone, :num_prems, :avatar)
+      params.require(:gym).permit(:user_id, :name, :style_id, :email, :website, :telephone, :num_prems, :avatar)
     end
 end
