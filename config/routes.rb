@@ -5,13 +5,18 @@ Rails.application.routes.draw do
   end
   resources :events do
     resources :likes, module: :events
+    resources :comments, module: :events
+    resources :addresses, module: :events
+    resources :sign_ups, module: :events
   end
+  
   resources :fight_records
   resources :fight_profiles
   resources :gyms do
     resources :likes, module: :gyms
     resources :addresses, module: :gyms
   end
+  resources :sign_ups
   resources :addresses
   resources :notifications
   resources :likes

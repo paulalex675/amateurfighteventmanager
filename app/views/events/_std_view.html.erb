@@ -73,21 +73,22 @@
 
       
       <div class="flex flex-col items-center">
-        <div class=" space-y-10">
-          <% if @event.host.owner.id == current_user.id %>
-            <div><%= link_to "Edit", edit_event_path(@event), class: "btn post" %>
-                 <%= link_to 'Add Fight', new_fight_path(@event), class: "btn post" %></div>
-          <% else %>
+        <div class="flex flex-row items-center p-1 space-x-2">
             <% pre_like = @event.likes.find { |like| like.liker_id == current_user.id } %>
             <% if pre_like %>
               <%= link_to "Un-Like (#{@event.likes.count})", like_path(pre_like), method: :delete, class: "btn like unlike" %>
             <% else %>
               <%= render partial: 'likes/like_button', locals: { likeable: @event } %>
             <% end %>
-          <% end %>
+            <% pre_sign = @event.sign_ups.find { |sign| sign.user_id == current_user.id } %>
+            <% if pre_sign %>
+              <%= link_to 'Quit This Event', sign_up_path(pre_sign), method: :delete, class: "btn post" %>
+            <% else %>
+              <%= render partial: 'sign_ups/sign_up_button', locals: { sign_upable: @event } %>              
+            <% end %>
         </div>
         <p>
-          <%= link_to 'Visit this gyms page for other events and info', gym_path(@event.host) %>
+          <%= link_to 'Visit this gyms page for other events and info', gym_path(@event.host), class: "color-blue-500" %>
         </p>
         <p>
           <%= link_to 'Back to Events', events_path %>

@@ -3,15 +3,15 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :fighter_a_id %>
-    <%= f.input :fighter_b_id %>
+  <div class="form-inputs p-10 flex-col flex-wrap items-center space-y-2">
+    <%= f.input :fighter_a_id,collection: FightProfile.all, prompt: "Pick your first fighter for this match", input_html: { class: "frm" }, require: true %>
+    <%= f.input :fighter_b_id, collection: FightProfile.all, prompt: "Pick your second fighter for this match", input_html: { class: "frm" }, require: true %>
     <%= f.input :style_id, collection: Style.all, prompt: "Pick a style for this fight", input_html: { class: "frm" } %>
-    <%= f.input :weight %>
-    <%= f.input :result %>
-    <%= f.input :draw %>
-    <%= f.input :winner %>
-    <%= f.input :info %>
+    <%= f.input :weight, input_html: { class: "text-area bg-gray-500 rounded-lg" }, require: true %>
+    <%= f.input :result, input_html: { class: "text-area bg-gray-500 rounded-lg" } %>
+    <%= f.input :draw, input_html: { class: "text-area bg-gray-500 rounded-lg" } %>
+    <%= f.input :winner_id, input_html: { class: "text-area bg-gray-500 rounded-lg" } %>
+    <%= f.input :info, input_html: { class: "text-area bg-gray-500 rounded-lg" } %>
   </div>
 
   <div class="form-actions">

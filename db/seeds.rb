@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
 Gym.destroy_all
+Event.destroy_all
 styles = Style.create([
     { name: 'Muay Thai' },
     { name: 'Boxing' },
@@ -47,7 +48,7 @@ styles = Style.create([
 end
 
 5.times do |index| 
-    User.all.sample.gyms.create(name: Faker::Music::RockBand.name, style_id: rand(1..24), email: "gym_num#{index}@email.com", telephone: Faker::PhoneNumber.cell_phone, num_prems: 0)
+    User.all.sample.gyms.create(name: Faker::Music::RockBand.name, style_id: Style.all.sample.id, email: "gym_num#{index}@email.com", telephone: Faker::PhoneNumber.cell_phone, num_prems: 0)
 end
 
 17.times do |index|
@@ -57,3 +58,7 @@ end
 17.times do |index|
     User.all.sample.fight_records.create(style_id: rand(1..24), win: rand(0...10), lose: rand(0...10), draw: rand(0...10))
 end
+
+Event.new(gym_id: Gym.all.sample.id, event_date: Time.now, event_name: "This is definitely not a dummy event", event_info: "Only a dummy would sign up for a dummy event").save
+
+Event.first.fights.create(fighter_a_id: FightProfile.all.sample.id, fighter_b_id: FightProfile.all.sample.id, weight: "Heavyweight", style_id: Style.all.sample.id, draw: false)

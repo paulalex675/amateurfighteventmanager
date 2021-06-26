@@ -3,14 +3,14 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs bg-gray-900">
-    <%= f.input :gym_id, collection: current_user.gyms.all, prompt: "Which gym are you creating the event for?" %>
-    <%= f.input :event_date %>
-    <%= f.input :event_name %>
-    <%= f.input :event_info %>
+  <div class="form-inputs p-10 flex-col flex-wrap items-center space-y-2">
+    <%= f.input :gym_id, collection: current_user.gyms.all, prompt: "Which gym are you creating the event for?", input_html: { class: "frm" }, require: true %>
+    <%= f.input :event_date, input_html: { class: "text-area frm" } %>
+    <%= f.input :event_name, input_html: { class: "text-area frm" } %>
+    <%= f.input :event_info, input_html: { class: "text-area frm" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn post" %>
   </div>
 <% end %>

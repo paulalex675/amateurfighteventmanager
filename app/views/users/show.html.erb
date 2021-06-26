@@ -17,9 +17,10 @@
           <%= @user.fight_profiles.first.ring_name %>
         <% end %>
         </p>
-      <p class="pt-8 text-sm"><%= @user.bio %></p>
+      <p class="pt-8 text-sm"><%= @user.bio %></p><br>
       <% if @user == current_user %>
-        <%= link_to 'Edit my info', edit_registration_path(@user) %>
+        <%= link_to 'Edit my info', edit_registration_path(@user), class: "btn post" %><br><br>
+        <%= link_to 'Set up a new gym', new_gym_path, class: "btn post" %><br><br>
         <%= render 'friend_requests/pending_friend_requests' %><br>
         <h4>Notifications</h4><br>
         <%= render 'notifications/notifications' %><br>

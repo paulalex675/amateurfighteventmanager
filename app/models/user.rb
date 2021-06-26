@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_one :gym, class_name: "Gym", foreign_key: "gym_id"
   has_many :fight_profiles, dependent: :destroy
   has_many :fight_records, dependent: :destroy
+  has_many :sign_ups
+  has_many :participations, class_name: "Event", through: :sign_ups
+  
   
 
   def self.create_from_provider_data(provider_data)
@@ -53,5 +56,9 @@ class User < ApplicationRecord
 
   def full_name
     "#{self.first_name} " + "#{self.last_name}"
+  end
+
+  def is_admin?
+    self.admin?
   end
 end

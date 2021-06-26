@@ -21,7 +21,7 @@ class FightsController < ApplicationController
 
   # POST /fights or /fights.json
   def create
-    @fight = Fight.new(fight_params)
+    @fight = @event.fights.new(fight_params)
 
     respond_to do |format|
       if @fight.save

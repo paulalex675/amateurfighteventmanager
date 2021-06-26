@@ -29,7 +29,11 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to @commentable, notice: "Comment was successfully posted!" }
         format.json { render :show, status: :created, location: @comment }
-        Notification.create(recipient_id: @commentable.user.id, actor_id: current_user.id, action: 'commented on', notifiable: @commentable)
+        if @commentable.class == Event
+          Notification.create(recipient_id: @commentable.host.owner.id, actor_id: current_user.id, action: 'commented on', notifiable: @commentable)
+        else 
+          Notification.create(recipient_id: @commentable.user.id, actor_id: current_user.id, action: 'commented on', notifiable: @commentable)
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -48,6 +52,10 @@ class CommentsController < ApplicationController
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def is_hosted
+    self.host.present? ? true : false
   end
 
   # DELETE /comments/1 or /comments/1.json

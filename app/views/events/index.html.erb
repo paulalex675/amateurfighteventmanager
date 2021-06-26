@@ -1,33 +1,19 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
+<div class="w-full container mx-auto bg-grey-900 shadow-outline">
+  <div class="flex md-flex-row flex-auto space-x-10 place-content-between shadow-2xl" >
 
-<table>
-  <thead>
-    <tr>
-      <th>Gym</th>
-      <th>Event date</th>
-      <th>Event name</th>
-      <th>Event info</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="flex flex-col items-center space-x-1 space-y-10 py-12 w-full">
+      <div class="bg-gray-700 flex flex-col rounded-lg p-6 border-white border-2">
+        <div class="bg-transparent w-full flex flex-col items-center text-2xl px-3">
+          <h1>Events!</h1>
+        </div>
+      </div>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.gym_id %></td>
-        <td><%= event.event_date %></td>
-        <td><%= event.event_name %></td>
-        <td><%= event.event_info %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-
+      <% @events.each do |event| %>
+        <div  class="bg-gray-900 w-full md:w-2/3 flex flex-col items-center px-3">
+          <%= render partial: 'event', locals: { event: event } %>
+        </div>
+      <% end %>         
+    </div>
+  </div>
+</div>

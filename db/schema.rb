@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_12_121723) do
+ActiveRecord::Schema.define(version: 2021_06_23_211521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,13 +97,13 @@ ActiveRecord::Schema.define(version: 2021_06_12_121723) do
   end
 
   create_table "fights", force: :cascade do |t|
-    t.integer "fighter_a_id"
-    t.integer "fighter_b_id"
-    t.integer "style_id"
+    t.integer "fighter_a_id", null: false
+    t.integer "fighter_b_id", null: false
+    t.integer "style_id", null: false
     t.string "weight", default: "", null: false
     t.string "result", default: "", null: false
-    t.boolean "draw", null: false
-    t.integer "winner", null: false
+    t.boolean "draw", default: false, null: false
+    t.integer "winner_id", default: 0, null: false
     t.text "info", default: "", null: false
     t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
@@ -167,6 +167,15 @@ ActiveRecord::Schema.define(version: 2021_06_12_121723) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "sign_ups", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_sign_ups_on_event_id"
+    t.index ["user_id"], name: "index_sign_ups_on_user_id"
+  end
+
   create_table "styles", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -188,6 +197,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_121723) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "provider_picture"
+    t.boolean "admin?", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

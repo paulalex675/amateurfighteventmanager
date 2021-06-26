@@ -1,23 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Gym:</strong>
-  <%= @event.host.name %>
-</p>
-
-<p>
-  <strong>Event date:</strong>
-  <%= @event.event_date %>
-</p>
-
-<p>
-  <strong>Event name:</strong>
-  <%= @event.event_name %>
-</p>
-
-<p>
-  <strong>Event info:</strong>
-  <%= @event.event_info %>
-</p> |
-
-<%= link_to 'Back', events_path %>
+<% if current_user == @event.host.owner %>
+  <%= render partial: 'events/host_view', locals: { event: @event } %>
+<% else %>
+  <%= render partial: 'events/std_view', locals: { event: @event } %>
+<% end %>

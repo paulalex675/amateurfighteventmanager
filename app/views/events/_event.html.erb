@@ -1,28 +1,40 @@
 
   
 <div class="bg-gray-700 flex flex-col justify-end rounded-lg p-6 border-white border-2">
-  <div class="flex flex-col shadow my-4 bg-transparent border-green-700 space-y-1">
     <div>
       <div class="bg-gray-900 flex flex-col justify-start p-6 rounded-lg shadow-2xl">
-        <p class="text-xl pb-4">
-          <strong>Hosting Gym:</strong>
-          <%= event.host.name %>
-        </p>
+        <div class="flex flex-row">
+          <div class="">
+            <a class="href">
+              <% if event.host.avatar.attached?%>
+                <%= image_tag event.host.avatar, class: "rounded-full w-30 h-30 border-2 border-green-500 " %>
+              <% end %>
+            </a>
+          </div>
+          <div class="bg-gray-900 flex flex-col justify-start p-6 rounded-lg shadow-2xl">
+            <div class="p-1">
+              <%= link_to 'View Event', event_path(event), class: "btn post" %>
+            </div>
+            <p class="text-xl pb-4">
+              <strong>Hosting Gym:</strong>
+              <%= event.host.name %>
+            </p>
 
-        <p class="text-xl pb-4">
-          <strong>Event date:</strong>
-          <%= event.event_date %>
-        </p>
+            <p class="text-xl pb-4">
+              <strong>Event date:</strong>
+              <%= event.event_date %>
+            </p>
 
-        <p class="text-xl pb-4">
-          <strong>Event name:</strong>
-          <%= event.event_name %>
-        </p>
+            <p class="text-xl pb-4">
+              <strong>Event name:</strong>
+              <%= event.event_name %>
+            </p>
 
-        <p class="text-xl pb-4">
-          <strong>Event info:</strong>
-          <%= event.event_info %>
-        </p> 
+            <p class="text-xl pb-4">
+              <strong>Event info:</strong>
+              <%= event.event_info %>
+            </p> 
+        </div>
       </div>
     </div>
   </div>

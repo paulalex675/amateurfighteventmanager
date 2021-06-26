@@ -1,0 +1,79 @@
+<div class="flex container">
+    <div class="flex flex-col">
+    <!--top section, photo, name, about-->
+        <div class="flex items-start">
+            <a class="href">
+              <% if @gym.avatar.attached?%>
+                <%= image_tag @gym.avatar, class: "rounded-full w-30 h-30 border-2 border-green-500 " %>
+              <% end %>
+            </a>
+            <h1 class="text-3xl font-bold pt-8 lg:pt-0"> <%=@gym.name %> </h1><br>
+            <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
+                <% if @gym.addresses.exists? %>
+                    <%= "Is a #{@gym.style.name} gym in the #{@gym.addresses.first.town_or_city} area, they currently have #{@gym.fight_profiles.count} active fighters fighting out of their gym." %>
+                <% else %>
+                    <%= "Is a #{@gym.style.name} is a gym without a fixed address at the moment" %>
+                <% end %>
+            </p>
+        </div>
+        <!--middle section, left gym info, right events and fighters-->
+        <div class="flex flex-row">
+        <!--left section-->
+            <div class="flex flex-col text-left w-1/2">
+                <p class="p-2">
+                  <%= link_to 'edit my gym', edit_gym_path(@gym), class: "btn post" %>
+                </p>
+                <div>
+                <h2 class="text-xl font-bold pt-8 lg:pt-0">Find us</h2>
+                <p class="flex flex-col space-1 ">
+                    <strong>Address:</strong>
+                    <% @gym.addresses.each do |address| %>
+                        <p><%= address.address1 %></p>
+                        <p><%= address.address2 %></p>
+                        <p><%= address.town_or_city %></p>
+                        <p><%= address.county %></p>
+                        <p><%= address.post_code %></p>
+                        <p><%= address.country %></p>
+                    <% end %>
+                </p>
+                <p>
+                    <strong>Email:</strong>
+                    <%= @gym.email %>   
+                </p>
+                <p>
+                    <strong>Website:</strong>
+                    <%= @gym.website %>
+                </p>
+                <p>
+                    <strong>Telephone:</strong>
+                    <%= @gym.telephone %>
+                </p>
+                <div>
+                    placeholder for map
+                </div>
+        </div>
+            </div>
+            <!--right section-->
+            <div class="flex flex-col text-left w-1/2">
+            <h2 class="text-xl font-bold pt-8 lg:pt-0">Our Events</h2>
+            <p class="p-1">
+              <%= link_to 'create new event', new_event_path, class: "btn post" %>
+            </p>
+            <p>
+                <% @gym.hosted_events.each do |event| %>
+                  <%= link_to "#{event.event_name}", events_path(event) %>
+                <% end %>
+            </p>
+
+            <h2 class="text-xl font-bold pt-8 lg:pt-0">Our Fighters</h2>
+                <p>
+                  <% @gym.fight_profiles.each do |fighter| %>
+                    <p><%= link_to "#{fighter.ring_name}", fight_profiles_path(fighter) %></p>
+                  <% end %>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+   

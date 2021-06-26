@@ -1,11 +1,21 @@
-<h1>Editing Gym</h1>
+<div class="w-full container mx-auto bg-grey-900 shadow-outline">
+    <div class="flex flex-col flex-auto space-x-10 place-content-between shadow-2xl" >
+        <div class="flex flex-row">
+            <div>
+                <h1>Editing Gym</h1>
+                <%= render 'form', gym: @gym %>
+            </div>
+            <div>
+                <h1>Add an address to your gym</h1>
+                <% (@gym.num_prems - @gym.addresses.count).times do %>
+                    <%= render partial: 'addresses/form', locals: { hostable: @gym }  %>
+                <% end %>  
+            </div>
+        </div>
+        <div>
+            <%= link_to 'Show', @gym %> |
+            <%= link_to 'Back', gyms_path %>
+        </div>
+    </div>
 
-<%= render 'form', gym: @gym %>
-<div>
-    <strong>Add an address to your gym</strong>
-    <% (@gym.num_prems - @gym.addresses.count).times do %>
-        <%= render partial: 'addresses/form', locals: { hostable: @gym }  %>
-    <% end %>  
 </div>
-<%= link_to 'Show', @gym %> |
-<%= link_to 'Back', gyms_path %>

@@ -2,5 +2,7 @@
 
 <%= render 'form', event: @event %>
 
+<%= render partial: 'addresses/form', locals: { hostable: @event }  %>
+
 <%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', event_path(@event) %>
