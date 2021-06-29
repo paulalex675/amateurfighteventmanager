@@ -3,7 +3,8 @@ class Fight < ApplicationRecord
   validate :no_self_fights
   belongs_to :fighter_a, class_name: "FightProfile", foreign_key: "fighter_a_id"
   belongs_to :fighter_b, class_name: "FightProfile", foreign_key: "fighter_b_id"
-  belongs_to :event
+  belongs_to :event, class_name: "Event", foreign_key: "event_id"
+  has_one :style, foreign_key: "style_id"
 
   def no_self_fights
     if fighter_a_id == fighter_b_id

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_23_211521) do
+ActiveRecord::Schema.define(version: 2021_06_28_212349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2021_06_23_211521) do
   create_table "fights", force: :cascade do |t|
     t.integer "fighter_a_id", null: false
     t.integer "fighter_b_id", null: false
-    t.integer "style_id", null: false
     t.string "weight", default: "", null: false
     t.string "result", default: "", null: false
     t.boolean "draw", default: false, null: false
@@ -108,6 +107,7 @@ ActiveRecord::Schema.define(version: 2021_06_23_211521) do
     t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "style_id", default: "", null: false
   end
 
   create_table "friend_requests", force: :cascade do |t|

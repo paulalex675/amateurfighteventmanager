@@ -21,11 +21,12 @@ class FightsController < ApplicationController
 
   # POST /fights or /fights.json
   def create
+    @event = Event.find(params[:event_id])
     @fight = @event.fights.new(fight_params)
 
     respond_to do |format|
       if @fight.save
-        format.html { redirect_to @fight, notice: "Fight was successfully created." }
+        format.html { redirect_to @event, notice: "Fight was successfully created." }
         format.json { render :show, status: :created, location: @fight }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class FightsController < ApplicationController
   def update
     respond_to do |format|
       if @fight.update(fight_params)
-        format.html { redirect_to @fight, notice: "Fight was successfully updated." }
+        format.html { redirect_to @event, notice: "Fight was successfully updated." }
         format.json { render :show, status: :ok, location: @fight }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,7 +52,7 @@ class FightsController < ApplicationController
   def destroy
     @fight.destroy
     respond_to do |format|
-      format.html { redirect_to fights_url, notice: "Fight was successfully destroyed." }
+      format.html { redirect_to @event, notice: "Fight was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -64,6 +65,6 @@ class FightsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fight_params
-      params.require(:fight).permit(:fighter_a_id, :fighter_b_id, :style, :weight, :result, :draw, :winner, :info, :event_id)
+      params.require(:fight).permit(:fighter_a_id, :fighter_b_id, :style_id, :weight, :result, :draw, :winner, :info, :event_id)
     end
 end

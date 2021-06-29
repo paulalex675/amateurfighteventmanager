@@ -75,7 +75,7 @@ group :development do
 
   gem 'guard'
 
-  gem "letter_opener", group: :development
+  gem "letter_opener"
 end
 
 group :test do

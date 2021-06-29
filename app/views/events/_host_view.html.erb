@@ -25,6 +25,11 @@
                   </p>
                 </div>
               </div>
+              <div class="flex flex-col ">
+                <div class="w-full flex flex-col items-center px-3">
+                <h1>VS</h1>
+                </div>
+              </div>
               <div class="flex flex-col">
                 <div class="w-full flex flex-col items-center px-3">
                   <a class="href">
@@ -73,18 +78,33 @@
 
       
       <div class="flex flex-col items-center">
-        <div class=" space-y-10">
-          <% if @event.host.owner.id == current_user.id %>
-            <div><%= link_to "Edit", edit_event_path(@event), class: "btn post" %>
-                 <%= link_to 'Add Fight', new_fight_path(@event), class: "btn post" %></div>
-          <% else %>
-            <% pre_like = @event.likes.find { |like| like.liker_id == current_user.id } %>
-            <% if pre_like %>
-              <%= link_to "Un-Like (#{@event.likes.count})", like_path(pre_like), method: :delete, class: "btn like unlike" %>
-            <% else %>
-              <%= render partial: 'likes/like_button', locals: { likeable: @event } %>
-            <% end %>
-          <% end %>
+        <div class=" flex space-y-10">
+          <div>
+            <%= link_to "Edit", edit_event_path(@event), class: "btn post" %><br><br>
+            <div class="p-1 text-white text-xl bg-green-900 border-2 border-white rounded-lg" >
+              <h2 >Add a fight to this event</h2>
+              <%= render 'fights/form', event: @event %>
+              <br>
+              <table class="bg-transparent p-2">
+                <h4>Fighters signed up for this event</h4>
+                <tr class="p-1">
+                  <th class="p-2">Fighter Name:</th>
+                  <th class="p-2">Gym:</th>
+                  <th class="p-2">Weight:</th>
+                  <th class="p-2">Email:</th>
+                </tr>
+                <% @event.users.each do |user| %>
+                  <tr>
+                    <td class="p-2"><%= user.full_name %></td>                  
+                    <td class="p-2"><%= user.fight_profiles.first.gym.name %></td>
+                    <td class="p-2"><%= user.fight_profiles.first.fight_weight %></td>
+                    <td class="p-2"><%= user.email %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+          </div>
+          
         </div>
         <p>
           <%= link_to 'Visit this gyms page for other events and info', gym_path(@event.host) %>

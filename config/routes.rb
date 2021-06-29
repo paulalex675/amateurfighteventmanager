@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :comments, module: :events
     resources :addresses, module: :events
     resources :sign_ups, module: :events
+    resources :fights
   end
   
   resources :fight_records
