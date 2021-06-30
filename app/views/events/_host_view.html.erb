@@ -13,7 +13,7 @@
       <p class="flex auto items-center p-5 h-auto bg-transparent">
         <strong class="text-4xl">Fights will include this epic showdown!</strong>
         <% if @event.fights.count > 0 %>
-          <% @event.fights.each do |fight| %>
+          <% fight = @event.fights.sample %>
             <div class="flex flex-row flex-auto space-x-10 place-content-between shadow-2xl">
               <div class="flex flex-col">
                 <div class="w-full flex flex-col items-center px-3">
@@ -41,7 +41,7 @@
                 </div>
               </div>
             </div>
-          <% end %>
+          
         <% else %>
           <p> There are no fights scheduled for this event just yet, please check back soon
           </p>

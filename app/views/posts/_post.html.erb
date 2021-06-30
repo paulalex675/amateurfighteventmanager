@@ -6,6 +6,9 @@
         </a>
       </div>
       <div class="bg-gray-900 flex flex-col justify-start p-6 rounded-lg shadow-2xl">
+        <% if post.image.attached? %>
+          <a class="href"><%= image_tag post.image %></a>
+        <% end %>
         <p class="text-3xl font-bold pb-4">
           <%= post.body %>
         </p>
