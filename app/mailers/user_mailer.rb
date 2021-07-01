@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'notification@email.com'
+  default from: 'amateurfighteventmanager@outlook.com'
   
   def welcome_email
     @user = params[:user]
