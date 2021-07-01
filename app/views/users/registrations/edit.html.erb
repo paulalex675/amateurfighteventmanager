@@ -12,10 +12,13 @@
         <div>
           <% if resource.avatar.attached? %>
             <%= image_tag resource.avatar %>
+            <%= button_to 'Change Profile Pic', resource.delete_image, class: "btn post" %>
+          <% else %>
+            <%= f.file_field :avatar %>
           <% end %>
         </div>
 
-        <%= f.file_field :avatar %>
+        
 
         <%= f.input :first_name, autofocus: false, placeholder: 'First Name', class: "text-area bg-gray-500 rounded-lg" %>
 

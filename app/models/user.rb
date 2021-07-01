@@ -10,7 +10,8 @@ class User < ApplicationRecord
   has_many :comments, foreign_key: :user_id, dependent: :destroy
   has_many :likes, foreign_key: :liker_id, dependent: :destroy
   has_many :liked_posts, class_name: 'Post', through: :likes
-  has_one_attached :avatar
+  has_one_attached :avatar, dependent: :destroy
+  validates :avatar, content_type: [:png, :jpg, :jpeg]
   has_many :friend_requests_as_requestor, foreign_key: :requestor_id, class_name: :FriendRequest, dependent: :destroy
   has_many :friend_requests_as_receiver, foreign_key: :receiver_id, class_name: :FriendRequest
   has_many :friendships, ->(user) { where("user_a_id = ? OR user_b_id = ?", user.id, user.id) }
@@ -45,8 +46,8 @@ class User < ApplicationRecord
   end
 
   def profile_picture
-    if self.avatar.attached?
-      avatar
+    if self.avatar.attached? && self.avatar.representable?
+      avatar.variant(resize: '100x100').processed
     elsif provider_picture?
       provider_picture
     else
