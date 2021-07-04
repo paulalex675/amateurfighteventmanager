@@ -16,7 +16,7 @@
         <% if @user.fight_profiles.count > 0 %>
           <%= @user.fight_profiles.first.ring_name %>
         <% end %>
-        </p>
+      </p>
       <p class="pt-8 text-sm"><%= @user.bio %></p><br>
       <% if @user == current_user %>
         <%= link_to 'Edit my info', edit_registration_path(@user), class: "btn post" %><br><br>
@@ -29,6 +29,31 @@
         <% else %>
           <%= link_to 'Set Up a fighter profile', new_fight_profile_path(), class: "btn post" %>
         <% end %>
+        <br><br>
+        <div>
+        <% if @user.fight_profiles.exists? %>
+          <table class="bg-transparent">
+            <tr>
+              <th class="p-2" scope="col">Ring Name:</th>
+              <th class="p-2" scope="col">Style:</th>
+              <th class="p-2" scope="col">Weight:</th>
+              <th class="p-2" scope="col">Wins:</th>
+              <th class="p-2" scope="col">Losses:</th>
+              <th class="p-2" scope="col">Draws:</th>
+            </tr>
+            <% @user.fight_profiles.each do |fight_profile| %>
+              <tr>
+                <td class="p-2"><%= fight_profile.ring_name %></td>
+                <td class="p-2"><%= fight_profile.style.name %></td>
+                <td class="p-2"><%= fight_profile.fight_weight %></td>
+                <td class="p-2"><%= fight_profile.user.fight_records.first.win %></td>
+                <td class="p-2"><%= fight_profile.user.fight_records.first.lose %></td>
+                <td class="p-2"><%= fight_profile.user.fight_records.first.draw %></td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
       <% else %>
         <% if Friendship.exists?(user_a_id: current_user.id, user_b_id: @user.id) || Friendship.exists?(user_a_id: @user.id, user_b_id: current_user.id) %>
           <div class="pt-12 pb-8">
@@ -53,27 +78,25 @@
       <br>
       <div>
         <p>Here are all of <%=@user.first_name%>'s posts</p><br>
-        <table>
-        <thead>
-          <tr>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @user.posts.each do |post| %>
-            <tr>
-              
-              <td class="rounded-lg bg-gray-200 text-black"><%= post.body %></td>
-            </tr>
-          <% end %>
-        </tbody>
-        </table>
-      
-      </div>
-
+          <table class="bg-transparent">
+            <thead>
+              <tr>
+                <th class="p-2" colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @user.posts.each do |post| %>
+                <tr>
+                  <td class="p-2 border-gray-800 rounded-full border-2"><%= post.body %></td>
+                  <td class="p-2 border-gray-800 rounded-full border-2"><%= post.created_at %></td>
+                  
+                </tr>
+              <% end %>
+            </tbody>
+          </table>      
+       </div>
     </div>
   </div>
 <div>
-  <%= render 'fight_profile' %>
+  
 </div>

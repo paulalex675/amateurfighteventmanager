@@ -11,7 +11,10 @@ class NotificationsController < ApplicationController
 
   def create
     @notification = Notification.new
-    @notification.save
+    if recipient_id != actor_id
+      @notification.save
+    else @notification.destroy
+    end
   end
 
   def edit 
@@ -19,8 +22,8 @@ class NotificationsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @notification.update(params)
-        format.html { redirect_to @notification, notice: "Notification has been read." }
+      if @notification.update(notification_params)
+        format.html { redirect_to notifications_path, notice: "Notification has been read." }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -36,6 +39,10 @@ class NotificationsController < ApplicationController
 
   def set_notification
     @notification = Notification.find(params[:id])
+  end
+
+  def notification_params
+    params.require(:notification).permit(:notifiable_id, :actor_id, :read_at, :notifiable_type, :recipient_id, :action)
   end
 
 end

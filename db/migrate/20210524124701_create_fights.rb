@@ -3,7 +3,7 @@ class CreateFights < ActiveRecord::Migration[6.1]
     create_table :fights do |t|
       t.integer :fighter_a_id, null: false
       t.integer :fighter_b_id, null: false
-      t.integer :style_id, null: false
+      t.string :style_id, null: false, default: ""
       t.string :weight, null: false, default: ""
       t.string :result, null: false, default: ""
       t.boolean :draw, null: false, default: false

@@ -6,6 +6,7 @@ class CreateFightRecords < ActiveRecord::Migration[6.1]
       t.integer :win, null: false, default: 0
       t.integer :draw, null: false, default: 0
       t.integer :lose, null: false, default: 0
+      t.integer :fight_score, null: false, default: 0
 
       t.timestamps
     end

@@ -10,10 +10,12 @@
         </div>
       </div>
                   
-      <% Event.all.each do |event| %>
-        <div  class="bg-gray-900 w-full flex flex-col items-center px-3">
-          <%= render partial: 'events/event', locals: { event: event } %>
-        </div>
+      <% Event.all.each do |event|  %>
+        <% if event.upcoming? %>
+          <div  class="bg-gray-900 w-full flex flex-col items-center px-3">
+            <%= render partial: 'events/event', locals: { event: event } %>
+          </div>
+        <% end %>
       <% end %>         
     </div>
 

@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   resources :addresses
   resources :notifications
   resources :likes
-  resources :friend_requests
+  resources :friend_requests do
+    resources :friendships
+  end
   resources :friendships
   resources :posts do
     resources :likes, module: :posts

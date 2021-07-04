@@ -16,24 +16,21 @@
               <%= link_to 'View Event', event_path(event), class: "btn post" %>
             </div>
             <p class="text-xl pb-4">
-              <strong>Hosting Gym:</strong>
-              <%= event.host.name %>
+              <strong>Event name:</strong>
+              <%= event.event_name %>
             </p>
-
             <p class="text-xl pb-4">
               <strong>Event date:</strong>
               <%= event.event_date %>
             </p>
-
-            <p class="text-xl pb-4">
-              <strong>Event name:</strong>
-              <%= event.event_name %>
-            </p>
-
             <p class="text-xl pb-4">
               <strong>Event info:</strong>
               <%= event.event_info %>
             </p> 
+            <p class="text-l pb-4">
+              <strong>Hosting Gym:</strong>
+              <%= event.host.name %>
+            </p>            
         </div>
       </div>
     </div>

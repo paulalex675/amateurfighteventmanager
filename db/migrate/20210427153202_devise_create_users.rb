@@ -14,7 +14,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       t.string :provider,           null: false, default: "", limit: 50
       t.string :uid,                null: false, default: "", limit: 200
-      t.integer :avatar_id,         null: false, default: ""
+      t.string :provider_picture,   null: false, default: ""
+      t.boolean :admin?,            null: false. default: false            
 
       ## Recoverable
       t.string   :reset_password_token

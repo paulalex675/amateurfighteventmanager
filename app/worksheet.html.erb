@@ -1,105 +1,45 @@
-<p id="notice"><%= notice %></p>
-<div class="w-full container mx-auto bg-grey-900 shadow-outline">
-  <div class="flex flex-row flex-auto space-x-10 place-content-between shadow-2xl" >
-    <div class="shadow-inner w-full container flex flex-col items-center h-auto bg-gradient-to-t from-gray-400 via-green-800 to-gray-800 mx-auto rounded-lg border-green-200 border-opacity-10 ">
-      <h1 class="p-10 font-serif bg-transparent text-8xl text-center"><%= @event.event_name %> </h1>
-      <br>
-      <br>
-      <p class="flex auto items-center p-5 h-auto bg-transparent text-2xl">
-        <%= @event.event_info %>
-      </p>
-      <br>
-      <br>
-      <p class="flex auto items-center p-5 h-auto bg-transparent">
-        <strong class="text-4xl">Fights will include this epic showdown!</strong>
-        <% if @event.fights.count > 0 %>
-          <% @event.fights.each do |fight| %>
-            <div class="flex flex-row flex-auto space-x-10 place-content-between shadow-2xl">
-              <div class="flex flex-col">
-                <div class="w-full flex flex-col items-center px-3">
-                  <a class="href">
-                    <%= image_tag fight.fighter_a.user.profile_picture, class: "rounded-lg w-10 h-10 border-2 border-transparent hover:border-indigo-400 text-white " %>
-                  </a>
-                  <p>
-                    <%= fight.fighter_a.ring_name %>
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col">
-                <div class="w-full flex flex-col items-center px-3">
-                  <a class="href">
-                    <%= image_tag fight.fighter_b.user.profile_picture, class: "rounded-lg w-10 h-10 border-2 border-transparent hover:border-indigo-400 text-white" %>
-                  </a>
-                  <p>
-                    <%= fight.fighter_b.ring_name %>
-                  </p>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <p> There are no fights scheduled for this event just yet, please check back soon
-          </p>
-        <% end %>
-      </p>
-      <p class="flex auto items-center p-1 h-auto bg-transparent">
-        <strong class="text-2xl">Hosted by - <%= @event.host.name %></strong>
-        
-      </p>
-      <br>
-      <br>
-      <p class="flex auto items-center p-1 h-auto bg-transparent">
-        <strong class="text-2xl">Date - <%= @event.event_date %></strong>
-        
-      </p>
-      <br>
-      <br>
-      <p class="flex-auto items-center p-1  h-auto bg-transparent">
-        <% if @event.addresses.exists? %>
-          <strong>Address:</strong>
-              <% @event.addresses.each do |address| %>
-                  <p><%= address.address1 %></p>
-                  <p><%= address.address2 %></p>
-                  <p><%= address.town_or_city %></p>
-                  <p><%= address.county %></p>
-                  <p><%= address.post_code %></p>
-                  <p><%= address.country %></p>
-              <% end %>
-        <% else %>
-          <strong class="text-2xl">Address - To be Confirmed</strong>
-        <% end %>
-      </p>
-      
+<nav class="bg-black">
+  <div class="max-w-5xl mx-auto border border-green-600">
+    <div class="flex justify-around">
+      <div class="flex items-center space-x-1">
+        <a href="#" class="flex items-center py-2 px-2">
 
-      
-      <div class="flex flex-col items-center">
-        <div class=" space-y-10">
-          <% if @event.host.owner.id == current_user.id %>
-            <div><%= link_to "Edit", edit_event_path(@event), class: "btn post" %>
-                 <%= link_to 'Add Fight', new_fight_path(@event), class: "btn post" %></div>
-          <% else %>
-            <% pre_like = @event.likes.find { |like| like.liker_id == current_user.id } %>
-            <% if pre_like %>
-              <%= link_to "Un-Like (#{@event.likes.count})", like_path(pre_like), method: :delete, class: "btn like unlike" %>
-            <% else %>
-              <%= render partial: 'likes/like_button', locals: { likeable: @event } %>
-            <% end %>
-          <% end %>
-        </div>
-        <p>
-          <%= link_to 'Visit this gyms page for other events and info', gym_path(@event.host) %>
-        </p>
-        <p>
-          <%= link_to 'Back to Events', events_path %>
-        </p>
-      </div>
+        <span>AFEM</span>
+        </a>        
+        <a href="#" class="py-5 px-3">
+          <%= link_to 'Home', root_path, class: "py-5 px-3 text-gray-700 hover:text-gray-900" %>
+        </a>
+        <a href="#" class="py-5 px-3">
+          <%= link_to 'Dojos', gyms_path, class: "py-5 px-3 text-gray-700 hover:text-gray-900" %>
+        </a>
+        <a href="#" class="py-5 px-3">
+          <%= link_to 'Fighters', fight_profiles_path, class: "py-5 px-3 text-gray-700 hover:text-gray-900" %>
+        </a>
+        <a href="#" class="py-5 px-3">
+          <%= link_to 'Events', events_path, class: "py-5 px-3 text-gray-700 hover:text-gray-900" %>
+        </a>
 
-      <div class="flex flex-col items-center">
-        <%= render partial: 'comments/comments', locals: { commentable: @event }, class: "bg-transparent" %>         
       </div>
-      <div class="flex flex-col items-center">
-        <%= render partial: 'comments/form', locals: { commentable: @event } %>
+      <div class="flex items-center space-x-1">
+      <% if user_signed_in? %>
+        <a href="#" class="py-5 px-3">
+          <%= link_to 'My Profile', current_user, class: "py-5 px-3 text-gray-700 hover:text-gray-900" %>
+        </a>
+        <a href="#" class="py-5 px-3">
+          <%= link_to "Notifications (#{current_user.notifications.where(read_at: nil).count})", class: "py-5 px-3 text-gray-700 hover:text-gray-900" %>
+        </a>
+        <a href="#" class="py-5 px-3">
+          <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "py-5 px-3 text-gray-700 hover:text-gray-900 hover:bg-red-800 hover:text-white" %>
+        </a>
+        <a href="#" class="py-5 px-3">
+          <%= image_tag current_user.profile_picture, class: "rounded-full w-10 h-10 border-2 border-transparent hover:border-indigo-400 text-white" %>
+        </a>
+      <% else %>
+         <a href="#" class="py-5 px-3">
+          <%= link_to 'Sign In', new_user_session_path, class: "bg-green-600 py-5 px-3 text-gray-200 hover:bg-green-700 hover:text-gray-900" %>
+        </a>
+      <% end %>        
       </div>
     </div>
   </div>
-</div>
+</nav>

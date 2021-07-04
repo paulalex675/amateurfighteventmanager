@@ -1,9 +1,9 @@
-<%= simple_form_for(@notification) do |f| %>
+<%= simple_form_for(notification) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  
+  <%= f.hidden_field :read_at, value: Time.now %>
   <div class="form-actions">
-    <%= f.submit "Mark as Read", class: "btn" %>
+    <%= f.submit "Mark as Read", class: "btn post" %>
   </div>
 <% end %>

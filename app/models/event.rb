@@ -7,6 +7,9 @@ class Event < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :sign_ups
   has_many :users, through: :sign_ups
- 
+  
+  def upcoming?
+    self.event_date > Time.now
+  end
   
 end

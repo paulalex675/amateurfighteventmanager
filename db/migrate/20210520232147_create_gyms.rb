@@ -7,6 +7,7 @@ class CreateGyms < ActiveRecord::Migration[6.1]
       t.string :email, null: false, default: ""
       t.string :website, null: false, default: ""
       t.string :telephone, null: false, default: ""
+      t.integer :num_prems, null: false, default: 1
 
       t.timestamps
     end

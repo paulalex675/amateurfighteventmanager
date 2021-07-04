@@ -47,7 +47,18 @@ table {
     @apply py-1;
     @apply px-5;
 }
-
+.nav_btn {
+    @apply py-5;
+    @apply px-3;
+    @apply text-gray-700;
+}
+.nav_btn:hover {
+    @apply bg-gray-200;
+    @apply border;
+    @apply border-white;
+    @apply rounded-xl;
+    @apply transition duration-500;
+}
 
 @import "tailwindcss/utilities";
 
