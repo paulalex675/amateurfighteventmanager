@@ -46,9 +46,15 @@
                 <td class="p-2"><%= fight_profile.ring_name %></td>
                 <td class="p-2"><%= fight_profile.style.name %></td>
                 <td class="p-2"><%= fight_profile.fight_weight %></td>
-                <td class="p-2"><%= fight_profile.user.fight_records.first.win %></td>
-                <td class="p-2"><%= fight_profile.user.fight_records.first.lose %></td>
-                <td class="p-2"><%= fight_profile.user.fight_records.first.draw %></td>
+                <% if @user.fight_records.exists? %>
+                  <td class="p-2"><%= fight_profile.user.fight_records.first.win %></td>
+                  <td class="p-2"><%= fight_profile.user.fight_records.first.lose %></td>
+                  <td class="p-2"><%= fight_profile.user.fight_records.first.draw %></td>
+                <% else %>
+                  <td class="p-2">0</td>
+                  <td class="p-2">0</td>
+                  <td class="p-2">0</td>
+                <% end %>
               </tr>
             <% end %>
           </table>

@@ -1,6 +1,6 @@
 <nav class="bg-black">
-  <div class="max-w-5xl mx-auto">
-    <div class="flex justify-around px-5">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-auto justify-around space-x-10 px-5">
       <div class="flex space-x-3">
 
         <div class="flex items-center">
@@ -25,13 +25,13 @@
         </div>
       </div>
 
-      <div class="hidden md:flex items-center space-x-1">
+      <div class="hidden md:flex items-center space-x-2">
       <% if user_signed_in? %>
         <a href="#" class="py-5 px-3">
           <%= link_to 'My Profile', current_user, class: "nav_btn" %>
         </a>
         <a href="#" class="py-5 px-3">
-          <%= link_to "Notifications (#{current_user.notifications.where(read_at: nil).count})", class: "nav_btn" %>
+          <%= link_to "Notifications (#{current_user.notifications.where(read_at: nil).count})", notifications_path, class: "nav_btn" %>
         </a>
         <a href="#" class="py-5 px-3">
           <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav_btn hover:bg-red-800 hover:text-white" %>

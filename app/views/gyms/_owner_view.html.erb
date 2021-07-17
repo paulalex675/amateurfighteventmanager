@@ -7,7 +7,8 @@
                 <%= image_tag @gym.avatar, class: "rounded-full w-30 h-30 border-2 border-green-500 " %>
               <% end %>
             </a>
-            <h1 class="text-3xl font-bold pt-8 lg:pt-0"> <%=@gym.name %> </h1><br>
+            <h1 class="text-3xl font-bold pt-8 lg:pt-0"> <%=@gym.name %> </h1>
+            <br><br>
             <p class="pt-4 text-base font-bold flex items-center justify-center lg:justify-start">
                 <% if @gym.addresses.exists? %>
                     <%= "Is a #{@gym.style.name} gym in the #{@gym.addresses.first.town_or_city} area, they currently have #{@gym.fight_profiles.count} active fighters fighting out of their gym." %>

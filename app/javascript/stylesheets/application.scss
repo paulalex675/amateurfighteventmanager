@@ -50,7 +50,7 @@ table {
 .nav_btn {
     @apply py-5;
     @apply px-3;
-    @apply text-gray-700;
+    @apply text-gray-200;
 }
 .nav_btn:hover {
     @apply bg-gray-200;
@@ -58,6 +58,7 @@ table {
     @apply border-white;
     @apply rounded-xl;
     @apply transition duration-500;
+    @apply text-gray-800;
 }
 
 @import "tailwindcss/utilities";

@@ -52,6 +52,7 @@ gem 'gravatar_image_tag'
 
 gem 'country_select'
 
+gem 'activemerchant'
 
 
 group :development, :test do

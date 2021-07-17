@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_212349) do
+ActiveRecord::Schema.define(version: 2021_06_23_211521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 2021_06_28_212349) do
     t.string "county", default: "", null: false
     t.string "post_code", default: "", null: false
     t.string "country", default: "", null: false
-    t.integer "hostable_id"
+    t.integer "hostable_id", default: 0, null: false
+    t.string "hostable_type", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "hostable_type"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -91,14 +91,15 @@ ActiveRecord::Schema.define(version: 2021_06_28_212349) do
     t.integer "win", default: 0, null: false
     t.integer "draw", default: 0, null: false
     t.integer "lose", default: 0, null: false
+    t.integer "fight_score", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "fight_score", default: 0, null: false
   end
 
   create_table "fights", force: :cascade do |t|
     t.integer "fighter_a_id", null: false
     t.integer "fighter_b_id", null: false
+    t.string "style_id", default: "", null: false
     t.string "weight", default: "", null: false
     t.string "result", default: "", null: false
     t.boolean "draw", default: false, null: false
@@ -107,7 +108,6 @@ ActiveRecord::Schema.define(version: 2021_06_28_212349) do
     t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "style_id", default: "", null: false
   end
 
   create_table "friend_requests", force: :cascade do |t|
@@ -135,9 +135,9 @@ ActiveRecord::Schema.define(version: 2021_06_28_212349) do
     t.string "email", default: "", null: false
     t.string "website", default: "", null: false
     t.string "telephone", default: "", null: false
+    t.integer "num_prems", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "num_prems"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -153,11 +153,11 @@ ActiveRecord::Schema.define(version: 2021_06_28_212349) do
     t.bigint "notifiable_id"
     t.string "notifiable_type", default: "", null: false
     t.integer "recipient_id"
+    t.string "action"
+    t.datetime "read_at"
+    t.integer "actor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "actor_id"
-    t.datetime "read_at"
-    t.string "action"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -191,6 +191,8 @@ ActiveRecord::Schema.define(version: 2021_06_28_212349) do
     t.string "encrypted_password", default: "", null: false
     t.string "provider", limit: 50, default: "", null: false
     t.string "uid", limit: 200, default: "", null: false
+    t.string "provider_picture", default: "", null: false
+    t.boolean "admin?", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -200,8 +202,6 @@ ActiveRecord::Schema.define(version: 2021_06_28_212349) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "provider_picture"
-    t.boolean "admin?", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
