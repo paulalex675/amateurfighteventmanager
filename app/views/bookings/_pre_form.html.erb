@@ -1,0 +1,11 @@
+<%= form_with(url: "/bookings/new", method: "get", local: true) do %>
+  <div>
+    <%= select_tag(:nog, options_for_select(1..10, selected: params[:nog]), { prompt: 'Tickets', class: "frm" }) %>
+    <% hidden_field params[:id], value: @event.id %>
+    <%= submit_tag("Book Tickets", class: "btn post") %>
+  </div>
+  
+  
+
+
+<% end %>

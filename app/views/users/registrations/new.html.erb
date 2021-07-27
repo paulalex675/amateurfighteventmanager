@@ -1,41 +1,54 @@
-
-<h2>Sign up</h2>
-
+<main class="flex flex-col justify-center bg-transparent max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+  <section>
+    <h3 class="font-bold text-2xl">Welcome to Fight Book</h3>
+      <p class="text-gray-600 pt-2">Sign in to your account.</p>
+  </section>
+  <section class="mt-10">
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.file_field :avatar %>
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "first_name", class: "text-area bg-gray-500 rounded-lg" } %>
-    <%= f.input :last_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "last_name", class: "text-area bg-gray-500 rounded-lg" } %>
-    <%= f.input :username,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "username", class: "text-area bg-gray-500 rounded-lg" } %>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email", class: "text-area bg-gray-500 rounded-lg" }%>
-    <%= f.input :bio,
-                autofocus: true,
-                input_html: { autocomplete: "say something about yourself", class: "text-area bg-gray-500 rounded-lg" } %>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password", class: "text-area bg-gray-500 rounded-lg" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password", class: "text-area bg-gray-500 rounded-lg" } %>
+  <div class="flex flex-col" >
+    <div class="mb-6 pt-3 rounded bg-transparent text gray-500">
+            
+      <%= f.file_field :avatar %>
+      <%= f.input :first_name,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "first_name", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
+      <%= f.input :last_name,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "last_name", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
+      <%= f.input :username,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "username", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
+      <%= f.input :email,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" }%>
+      <%= f.input :bio,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  autofocus: true,
+                  input_html: { autocomplete: "say something about yourself", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
+      <%= f.input :password,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
+      <%= f.input :password_confirmation,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  required: true,
+                  input_html: { autocomplete: "new-password", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up", class: "btn post" %>
+  <div class="">
+    <%= f.button :submit, "Sign up",
+                 class: "btn post" %>
   </div>
 <% end %>
 <%= render "users/shared/links" %>

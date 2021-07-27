@@ -6,8 +6,11 @@
       <br>
       <br>
       <p class="flex auto items-center p-5 h-auto bg-transparent text-2xl">
-        <%= @event.event_info %><br>
-        <%= button_to 'BUY TICKETS!', class: "btn post" %>
+        <div><%= @event.event_info %></div><br><br>
+        <div> 
+          <%= render partial: 'bookings/pre_form', locals: { event: @event } %>
+          <%= "£#{@event.ticket_price} per ticket" %>
+        </div>
       </p>
       <br>
       <br>

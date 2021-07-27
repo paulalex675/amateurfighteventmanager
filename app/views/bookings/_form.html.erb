@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<%= simple_form_for(@booking) do |f| %>
+  <div class="form-inputs p-10 flex-col flex-wrap items-center space-y-2">
+  <%= params[:nog] %>
+  <%= f.input :event_id, collection: Event.all.map { |event| [event.event_name, event.id] }, input_html: { class: "frm" } %>
+  
+ 
+    <%= f.simple_fields_for :tickets do |p| %>
+      <%= p.input :name, input_html: { class: "frm"} %>
+      <%= p.input :email, input_html: { class: "frm" } %>
+    <% end %>
+ 
+
+</div>
+
+
+  
+  <% f.hidden_field :number_of_guests, value: params[:nog].to_i %>
+
+
+
+  <div class="form-actions">
+    <%= f.submit "Purchase Tickets", class: "btn post" %>
+  </div>
+
+  
+<% end %>

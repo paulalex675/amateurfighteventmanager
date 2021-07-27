@@ -1,0 +1,26 @@
+
+
+<p>
+  <strong>Event:</strong>
+  <%= @booking.event.event_name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @booking.user_id %>
+</p>
+
+<p>
+  <strong>Number of guests:</strong>
+  <%= @booking.number_of_guests %>
+</p>
+
+<p>
+  <ol>
+    <% @booking.tickets.each do |t| %>
+      <li><%= t.name %></li>
+    <% end %>
+</p>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %> |
+<%= link_to 'Back', bookings_path %>

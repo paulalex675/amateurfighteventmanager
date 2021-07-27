@@ -20,16 +20,26 @@
 
         
 
-        <%= f.input :first_name, autofocus: false, placeholder: 'First Name', class: "text-area bg-gray-500 rounded-lg" %>
-
-        <%= f.input :last_name, autofocus: false, placeholder: 'Last Name', class: "text-area bg-gray-500 rounded-lg" %>
-
-        <%= f.input :username, autofocus: false, placeholder: 'Username', class: "text-area bg-gray-500 rounded-lg" %>
-
-        <%= f.input :email, autofocus: false, placeholder: 'Email', class: "text-area bg-gray-500 rounded-lg" %>
-
-        <%= f.input :bio, autofocus: false, placeholder: 'Say something about yourself', class: "text-area bg-gray-500 rounded-lg" %>
-
+        <%= f.input :first_name,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  autofocus: false,
+                  input_html: { autocomplete: "first_name", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
+      <%= f.input :last_name,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  autofocus: false,
+                  input_html: { autocomplete: "last_name", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
+      <%= f.input :username,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  autofocus: false,
+                  input_html: { autocomplete: "username", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
+      <%= f.input :email,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  autofocus: false,
+                  input_html: { autocomplete: "email", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" }%>
+      <%= f.input :bio,
+                  class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                  autofocus: false,
+                  input_html: { autocomplete: "say something about yourself", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
         
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -37,16 +47,19 @@
         <% end %>
 
         <%= f.input :password,
+                    class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
                     hint: "leave it blank if you don't want to change it",
                     required: false,
-                    input_html: { autocomplete: "new-password", class: "text-area bg-gray-500 rounded-lg" } %>
+                    input_html: { autocomplete: "new-password", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
         <%= f.input :password_confirmation,
+                    class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                    hint: "leave it blank if you don't want to change it",
                     required: false,
-                    input_html: { autocomplete: "new-password", class: "text-area bg-gray-500 rounded-lg" } %>
+                    input_html: { autocomplete: "new-password", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
         <%= f.input :current_password,
-                    hint: "we need your current password to confirm your changes",
-                  
-                    input_html: { autocomplete: "current-password", class: "text-area bg-gray-500 rounded-lg" } %>
+                    class: "block text-gray-700 text-sm font-bold mb-2 ml-3",
+                    hint: "we need your current password to confirm your changes",                  
+                    input_html: { autocomplete: "current-password", class: "bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-green-700 transition duration-500 px-3 pb-3" } %>
       </div>
 
       <div class="form-actions">

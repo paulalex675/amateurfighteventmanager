@@ -7,7 +7,7 @@ table {
     @apply rounded-lg;
 }
 .btn {
-    @apply rounded-full;
+    @apply rounded-lg;
     @apply text-white;
     @apply p-1;
     @apply border-white;
@@ -38,7 +38,8 @@ table {
     @apply text-white;
 }
 .nav_item:hover {
-    @apply border-indigo-400;
+    @apply border-2;
+    @apply border-green-700;
 }
 .frm {
     @apply bg-gray-800;
