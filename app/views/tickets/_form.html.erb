@@ -1,18 +1,14 @@
 
-<%= simple_form_for [booking, @booking.tickets.new] do |f| %>
+<%= simple_form_for(@booking.tickets.new) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   
-  <% f.hidden_field :booking_id, value: params[:booking] %>
-  
-  
-    <div class="form-inputs">
-      <%= f.input :name %>
-      <%= f.input :email %>
-    </div>
-  
+  <div class="form-inputs">
+    <%= f.input :name, input_html: { prompt: 'Tickets', class: "frm" } %>
+    <%= f.input :email, input_html: { prompt: 'Tickets', class: "frm" } %>
+  </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= submit_tag("Book Tickets", class: "btn post") %>
   </div>
 <% end %>

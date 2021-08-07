@@ -13,21 +13,23 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = Booking.new
-    @booking.user_id = current_user.id
-    params[:nog].to_i.times { @booking.tickets.build }   
   end
 
   # GET /bookings/1/edit
   def edit
+    @booking.num_tickets.times { @booking.tickets.build }
   end
 
   # POST /bookings or /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    @event = Event.find(params[:event_id])
+    @booking = @event.bookings.new(booking_params)
+    @booking.user_id = current_user.id
     
+
     respond_to do |format|
-      if @booking.save        
-        format.html { redirect_to @booking.event, notice: "Booking was successfully created." }
+      if @booking.save
+        format.html { redirect_to edit_booking_path(@booking), notice: "Booking was successfully created." }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,12 +40,14 @@ class BookingsController < ApplicationController
 
   # PATCH/PUT /bookings/1 or /bookings/1.json
   def update
-    if @booking.update(booking_params)
-      format.html { redirect_to @booking, notice: "Booking was successfully updated." }
-      format.json { render :show, status: :ok, location: @booking }
-    else
-      format.html { render :edit, status: :unprocessable_entity }
-      format.json { render json: @booking.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if @booking.update(booking_params)
+        format.html { redirect_to @booking, notice: "Booking was successfully updated." }
+        format.json { render :show, status: :ok, location: @booking }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -64,6 +68,6 @@ class BookingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.require(:booking).permit(:event_id, :user_id, :number_of_guests, tickets_attributes: [:name, :email, :price, :_destroy])
+      params.require(:booking).permit(:event_id, :num_tickets, :user_id, tickets_attributes: [:name, :email, :_destroy])
     end
 end

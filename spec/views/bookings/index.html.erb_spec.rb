@@ -5,13 +5,13 @@ RSpec.describe "bookings/index", type: :view do
     assign(:bookings, [
       Booking.create!(
         event_id: 2,
-        user_id: 3,
-        number_of_guests: 4
+        num_tickets: 3,
+        user_id: 4
       ),
       Booking.create!(
         event_id: 2,
-        user_id: 3,
-        number_of_guests: 4
+        num_tickets: 3,
+        user_id: 4
       )
     ])
   end

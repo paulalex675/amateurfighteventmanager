@@ -4,8 +4,8 @@ RSpec.describe "bookings/edit", type: :view do
   before(:each) do
     @booking = assign(:booking, Booking.create!(
       event_id: 1,
-      user_id: 1,
-      number_of_guests: 1
+      num_tickets: 1,
+      user_id: 1
     ))
   end
 
@@ -16,9 +16,9 @@ RSpec.describe "bookings/edit", type: :view do
 
       assert_select "input[name=?]", "booking[event_id]"
 
-      assert_select "input[name=?]", "booking[user_id]"
+      assert_select "input[name=?]", "booking[num_tickets]"
 
-      assert_select "input[name=?]", "booking[number_of_guests]"
+      assert_select "input[name=?]", "booking[user_id]"
     end
   end
 end

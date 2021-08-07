@@ -22,7 +22,8 @@ class User < ApplicationRecord
   has_many :fight_records, dependent: :destroy
   has_many :sign_ups
   has_many :participations, class_name: "Event", through: :sign_ups
-  has_many :tickets, class_name: :Ticket, foreign_key: :user_id
+  has_many :bookings, dependent: :destroy
+  has_many :tickets, through: :bookings
   
   
 

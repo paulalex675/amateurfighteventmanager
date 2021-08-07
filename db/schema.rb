@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_19_200311) do
+ActiveRecord::Schema.define(version: 2021_08_02_143057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(version: 2021_07_19_200311) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
-    t.integer "number_of_guests"
+    t.integer "event_id", default: 0, null: false
+    t.integer "num_tickets", default: 0, null: false
+    t.integer "user_id", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -193,13 +193,11 @@ ActiveRecord::Schema.define(version: 2021_07_19_200311) do
   end
 
   create_table "tickets", force: :cascade do |t|
-    t.integer "event_id"
-    t.float "price"
-    t.string "name"
-    t.string "email"
+    t.integer "booking_id", default: 0, null: false
+    t.string "name", default: "", null: false
+    t.string "email", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "booking_id"
   end
 
   create_table "users", force: :cascade do |t|

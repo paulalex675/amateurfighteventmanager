@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :tickets
   resources :bookings do
     resources :tickets
   end
-  resources :tickets
   resources :fights do
     resources :likes, module: :fights
     resources :comments, module: :fights
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :addresses, module: :events
     resources :sign_ups, module: :events
     resources :fights
-    resources :bookings 
+    resources :bookings
   end
   
   resources :fight_records

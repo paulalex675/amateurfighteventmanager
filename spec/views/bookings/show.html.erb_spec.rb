@@ -4,8 +4,8 @@ RSpec.describe "bookings/show", type: :view do
   before(:each) do
     @booking = assign(:booking, Booking.create!(
       event_id: 2,
-      user_id: 3,
-      number_of_guests: 4
+      num_tickets: 3,
+      user_id: 4
     ))
   end
 

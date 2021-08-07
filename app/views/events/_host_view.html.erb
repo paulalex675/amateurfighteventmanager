@@ -1,5 +1,22 @@
 <p id="notice"><%= notice %></p>
 <div class="w-full container mx-auto bg-grey-900 shadow-outline">
+  <div>
+    <table class="bg-transparent mx-auto">
+      
+      <tr>
+        <td class="px-10 text-xl text-center"><%= @event.sign_ups.count %></td>
+        <td class="p-1 text-xl text-center"><%= (@event.sign_ups.count)-(@event.fights.count*2) %></td>
+        <td class="p-1 text-xl text-center"><%= @event.num_tickets - @event.tickets_remaining %></td>
+        <td class="p-1 text-xl text-center"><%= @event.tickets_remaining %></td>
+      </tr>
+      <tr>
+        <th class="px-10 text-xs text-center">Fighters Signed Up</th>
+        <th class="px-10 text-xs text-center">Fighters Not Yet Matched</th>
+        <th class="px-10 text-xs text-center">Tickets Sold</th>
+        <th class="px-10 text-xs text-center">Tickets Left</th>
+      </tr>
+    </table>
+  </div>
   <div class="flex flex-row flex-auto space-x-10 place-content-between shadow-2xl" >
     <div class="shadow-inner w-full container flex flex-col items-center h-auto bg-gradient-to-t from-gray-400 via-green-800 to-gray-800 mx-auto rounded-lg border-green-200 border-opacity-10 ">
       <h1 class="p-10 font-serif bg-transparent text-8xl text-center"><%= @event.event_name %> </h1>

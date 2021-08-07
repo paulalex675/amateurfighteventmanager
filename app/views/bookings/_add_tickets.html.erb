@@ -2,26 +2,14 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div>
-    <%= @booking.event.event_name %>
-  </div>
-
-  <div>
-    <%= @booking.tickets.each do |t| %>
-      <%= t.name %>
+  <div class="form-inputs">
+    <%= f.simple_fields_for :tickets do |p| %>
+      <%= p.input :name, input_html: { prompt: 'Tickets', class: "frm" } %>
+      <%= p.input :email, input_html: { prompt: 'Tickets', class: "frm" } %>
     <% end %>
   </div>
-
-  <div class="form-inputs p-10 flex-col flex-wrap">
-    <% @booking.number_of_guests.times do %>
-      <%= f.simple_fields_for :ticket do |p| %>
-        <%= p.input :name, html_input: { class: "frm"} %>
-        <%= p.input :email, html_input: { class: "frm" } %>
-      <% end %>
-    <% end %>    
-  </div>
-
+  
   <div class="form-actions">
-    <%= f.submit "Book Tickets!", class: "btn post" %>
+    <%= submit_tag("Book Tickets", class: "btn post") %>
   </div>
 <% end %>

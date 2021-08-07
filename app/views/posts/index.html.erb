@@ -36,11 +36,12 @@
         </div>
       <% end %>         
     </div>
-
+    
+    <% sty_rand = Style.all.sample %>
     <div class="flex flex-col items-center space-x-1 space-y-1 py-12 w-1/4">
       <div class="bg-gray-900 flex flex-col rounded-lg p-6 border-green-900 border-2">
         <div class="bg-transparent w-full flex flex-col items-center text-2xl px-3">
-          <h2>Look at the TOP 10 Fighters!
+          <h2><%= "Look at the TOP 10 #{sty_rand.name} Fighters!" %>
         </div>
       </div>
       
@@ -52,7 +53,7 @@
             <th class="p-2" scope="col"><strong>Fight Score:</strong></th>
             <th class="p-2" scope="col"><strong>Win %</strong></th>
           </tr>
-          <% FightRecord.order(fight_score: :desc).limit(10).each do |record| %>
+          <% FightRecord.where(style: sty_rand).order(fight_score: :desc).limit(10).each do |record| %>
             <tr>
               <td class="p-2"><%= record.user.full_name %></td>
               <td class="p-2"><%= record.style.name %></td>

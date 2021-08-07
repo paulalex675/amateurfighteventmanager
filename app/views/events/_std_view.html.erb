@@ -8,8 +8,13 @@
       <p class="flex auto items-center p-5 h-auto bg-transparent text-2xl">
         <div><%= @event.event_info %></div><br><br>
         <div> 
-          <%= render partial: 'bookings/pre_form', locals: { event: @event } %>
-          <%= "£#{@event.ticket_price} per ticket" %>
+          <% if @event.tickets_remaining > 0 %>
+            <%= "Tickets Remaining #{@event.tickets_remaining}" %>
+            <%= render partial: 'bookings/form', locals: { event: @event } %>
+            <%= "£#{@event.ticket_price} per ticket" %>
+          <% else %>
+            <p>This Event is sold out!</p>
+          <% end %>
         </div>
       </p>
       <br>
