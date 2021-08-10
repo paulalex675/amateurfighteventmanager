@@ -11,7 +11,19 @@ class FightRecord < ApplicationRecord
   end
 
   def set_score
-    self.update(fight_score: (self.win.to_i * 3) + self.draw.to_i)
+    self.update(fight_score: (self.win.to_i * 3) + self.draw.to_i + (self.win_percentage))
   end 
+
+  def add_win
+    self.update(win: + 1)
+  end
+
+  def add_draw
+    self.update(draw: + 1)
+  end
+
+  def add_loss
+    self.update(lose: + 1)
+  end
 
 end

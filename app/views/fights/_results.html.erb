@@ -1,0 +1,19 @@
+
+<%= simple_form_for(@fight) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs p-10 flex-col flex-wrap items-center space-y-2">
+    <%= f.input :draw %>
+    <%= f.input :winner_id, collection: @fight.fighters, label_method: :name, prompt: 'Pick the winner', input_html: { class: "frm" } %>
+    <%= f.input :result, input_html: { class: "text-area bg-gray-500 rounded-lg" }, require: true %>
+    <%= f.input :info, input_html: { class: "text-area bg-gray-500 rounded-lg" }, require: true %>
+    
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn post" %>
+  </div>
+<% end %>
+

@@ -28,6 +28,14 @@ class FightsController < ApplicationController
       if @fight.save
         format.html { redirect_to @event, notice: "Fight was successfully created." }
         format.json { render :show, status: :created, location: @fight }
+        @fight.fighter_a.user.sign_ups.where(event_id: @fight.event.id).update(matched?: true)
+        @fight.fighter_b.user.sign_ups.where(event_id: @fight.event.id).update(matched?: true)
+        unless @fight.fighter_a.user.fight_records.where(style_id: @fight.style_id).exists?
+          @fight.fighter_a.user.fight_records.create(style_id: @fight.style_id)
+        end
+        unless @fight.fighter_b.user.fight_records.where(style_id: @fight.style_id).exists?
+          @fight.fighter_b.user.fight_records.create(style_id: @fight.style_id)
+        end        
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @fight.errors, status: :unprocessable_entity }
@@ -39,7 +47,18 @@ class FightsController < ApplicationController
   def update
     respond_to do |format|
       if @fight.update(fight_params)
-        format.html { redirect_to @event, notice: "Fight was successfully updated." }
+        if @fight.draw
+          @fight.fighter_a.user.fight_records.where(style_id: @fight.style_id).each { |r| r.add_draw }
+          @fight.fighter_a.user.fight_records.where(style_id: @fight.style_id).each { |r| r.add_draw }
+        elsif @fight.winner_id == @fight.fighter_a_id
+          @fight.fighter_a.user.fight_records.where(style_id: @fight.style_id).each { |r| r.add_win }
+          @fight.fighter_b.user.fight_records.where(style_id: @fight.style_id).each { |r| r.add_loss }
+        elsif @fight.winner_id == @fight.fighter_b_id
+          @fight.fighter_b.user.fight_records.where(style_id: @fight.style_id).each { |r| r.add_win }
+          @fight.fighter_a.user.fight_records.where(style_id: @fight.style_id).each { |r| r.add_loss }
+        else
+        end
+        format.html { redirect_to @fight.event, notice: "Fight was successfully updated." }
         format.json { render :show, status: :ok, location: @fight }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,6 +84,6 @@ class FightsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fight_params
-      params.require(:fight).permit(:fighter_a_id, :fighter_b_id, :style_id, :weight, :result, :draw, :winner, :info, :event_id)
+      params.require(:fight).permit(:fighter_a_id, :fighter_b_id, :style_id, :weight, :result, :draw, :winner_id, :info, :event_id)
     end
 end

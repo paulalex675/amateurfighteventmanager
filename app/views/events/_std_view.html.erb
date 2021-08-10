@@ -64,9 +64,9 @@
       <br>
       <br>
       <p class="flex-auto items-center p-1  h-auto bg-transparent">
-        <% if @event.addresses.exists? %>
+        <% if @event.host.addresses.count > 0 %>
           <strong>Address:</strong>
-              <% @event.addresses.each do |address| %>
+              <% @event.host.addresses.each do |address| %>
                   <p><%= address.address1 %></p>
                   <p><%= address.address2 %></p>
                   <p><%= address.town_or_city %></p>

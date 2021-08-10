@@ -28,45 +28,26 @@
       <br>
       <br>
       <p class="flex auto items-center p-5 h-auto bg-transparent">
-        <strong class="text-4xl">Fights will include this epic showdown!</strong>
+        <strong class="text-4xl">Fights</strong>
         <% if @event.fights.count > 0 %>
-          <% fight = @event.fights.sample %>
-            <div class="flex flex-row flex-auto space-x-10 place-content-between shadow-2xl">
-              <div class="flex flex-col">
-                <div class="w-full flex flex-col items-center px-3">
-                  <a class="href">
-                    <%= image_tag fight.fighter_a.user.profile_picture, class: "rounded-lg w-10 h-10 border-2 border-transparent hover:border-indigo-400 text-white " %>
-                  </a>
-                  <p>
-                    <%= fight.fighter_a.ring_name %>
-                  </p>
-                </div>
-              </div>
-              <div class="flex flex-col ">
-                <div class="w-full flex flex-col items-center px-3">
-                <h1>VS</h1>
-                </div>
-              </div>
-              <div class="flex flex-col">
-                <div class="w-full flex flex-col items-center px-3">
-                  <a class="href">
-                    <%= image_tag fight.fighter_b.user.profile_picture, class: "rounded-lg w-10 h-10 border-2 border-transparent hover:border-indigo-400 text-white" %>
-                  </a>
-                  <p>
-                    <%= fight.fighter_b.ring_name %>
-                  </p>
-                </div>
-              </div>
-            </div>
-          
+          <% fight = @event.fights.each do |f| %>
+            <table class="bg-transparent">
+              <tr>
+                <th class="p-2">Fighter A:</th>
+                <th class="p-2">Fighter B:</th>
+                <th class="p-2">Update:</th>
+              </tr>
+              <tr>
+                <td class="p-2"><%= f.fighter_a.user.full_name %></td>
+                <td class="p-2"><%= f.fighter_b.user.full_name %></td>
+                <td class="p-2"><%= link_to 'Update', edit_fight_path(f), class: "btn post" %></td>
+              </tr>
+            </table>
+          <% end %>
         <% else %>
-          <p> There are no fights scheduled for this event just yet, please check back soon
+          <p> This event will be a flop if you don't schedule some fights fool
           </p>
         <% end %>
-      </p>
-      <p class="flex auto items-center p-1 h-auto bg-transparent">
-        <strong class="text-2xl">Hosted by - <%= @event.host.name %></strong>
-        
       </p>
       <br>
       <br>
@@ -77,9 +58,9 @@
       <br>
       <br>
       <p class="flex-auto items-center p-1  h-auto bg-transparent">
-        <% if @event.addresses.exists? %>
+        <% if @event.host.addresses.count > 0 %>
           <strong>Address:</strong>
-              <% @event.addresses.each do |address| %>
+              <% @event.host.addresses.each do |address| %>
                   <p><%= address.address1 %></p>
                   <p><%= address.address2 %></p>
                   <p><%= address.town_or_city %></p>
@@ -112,7 +93,7 @@
                 </tr>
                 <% @event.users.each do |user| %>
                   <tr>
-                    <td class="p-2"><%= user.full_name %></td>                  
+                    <td class="p-2"><%= user.full_name %></td>              
                     <td class="p-2"><%= user.fight_profiles.first.gym.name %></td>
                     <td class="p-2"><%= user.fight_profiles.first.fight_weight %></td>
                     <td class="p-2"><%= user.email %></td>
