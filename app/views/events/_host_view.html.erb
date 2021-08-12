@@ -29,21 +29,21 @@
       <br>
       <p class="flex auto items-center p-5 h-auto bg-transparent">
         <strong class="text-4xl">Fights</strong>
-        <% if @event.fights.count > 0 %>
-          <% fight = @event.fights.each do |f| %>
+          <% if @event.fights.count > 0 %>
             <table class="bg-transparent">
               <tr>
                 <th class="p-2">Fighter A:</th>
                 <th class="p-2">Fighter B:</th>
                 <th class="p-2">Update:</th>
-              </tr>
-              <tr>
-                <td class="p-2"><%= f.fighter_a.user.full_name %></td>
-                <td class="p-2"><%= f.fighter_b.user.full_name %></td>
-                <td class="p-2"><%= link_to 'Update', edit_fight_path(f), class: "btn post" %></td>
-              </tr>
+              </tr>              
+              <% fight = @event.fights.each do |f| %>
+                <tr>
+                  <td class="p-2"><%= f.fighter_a.user.full_name %></td>
+                  <td class="p-2"><%= f.fighter_b.user.full_name %></td>
+                  <td class="p-2"><%= link_to 'Update', edit_fight_path(f), class: "btn post" %></td>
+                </tr>
+              <% end %>
             </table>
-          <% end %>
         <% else %>
           <p> This event will be a flop if you don't schedule some fights fool
           </p>

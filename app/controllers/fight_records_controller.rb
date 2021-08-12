@@ -31,9 +31,9 @@ class FightRecordsController < ApplicationController
 
     respond_to do |format|
       if @fight_record.save
+        @fight_record.set_score
         format.html { redirect_to user_path(@fight_record.user), notice: "Fight record was successfully created." }
         format.json { render :show, status: :created, location: @fight_record }
-        @fight_record.update(fight_score: (@fight_record.win.to_i * 3) + @fight_record.draw)
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @fight_record.errors, status: :unprocessable_entity }
@@ -45,6 +45,7 @@ class FightRecordsController < ApplicationController
   def update
     respond_to do |format|
       if @fight_record.update(fight_record_params)
+        @fight_record.set_score
         format.html { redirect_to @fight_record, notice: "Fight record was successfully updated." }
         format.json { render :show, status: :ok, location: @fight_record }
       else

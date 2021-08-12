@@ -64,4 +64,9 @@ class User < ApplicationRecord
   def is_admin?
     self.admin?
   end
+
+  after_create :welcome_send
+  def welcome_send
+    UserMailer.with(user: self).welcome_email.deliver_now
+  end
 end

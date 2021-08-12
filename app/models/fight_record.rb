@@ -16,14 +16,17 @@ class FightRecord < ApplicationRecord
 
   def add_win
     self.update(win: + 1)
+    self.set_score
   end
 
   def add_draw
     self.update(draw: + 1)
+    self.set_score
   end
 
   def add_loss
     self.update(lose: + 1)
+    self.set_score
   end
 
 end
