@@ -36,37 +36,4 @@ styles = Style.create!([
     { name: 'Shaolin Kung Fu' }
     ])
 
-20.times do |index|
-    User.create!([{ 
-        first_name: Faker::Name.first_name,
-        last_name: Faker::Name.last_name,
-        username: "#{Faker::Superhero.prefix} #{Faker::Superhero.descriptor}",
-        email: "seeded_user#{index}@example.com",
-        password: 'password',
-        bio: Faker::TvShows::BigBangTheory.quote
-    }])
-end
-
-5.times do |index| 
-    User.all.sample.gyms.create(name: Faker::Music::RockBand.name, style_id: Style.all.sample.id, email: "gym_num#{index}@email.com", telephone: Faker::PhoneNumber.cell_phone, num_prems: 0)
-end
-
-17.times do |index|
-    User.all.sample.fight_records.create(style_id: rand(1..24), win: rand(0...10), lose: rand(0...10), draw: rand(0...10))
-end
-
-Event.new(gym_id: Gym.all.sample.id, event_date: Time.now, event_name: "This is definitely not a dummy event", event_info: "Only a dummy would sign up for a dummy event").save
-
-User.all.each do |u|
-    u.fight_profiles.create!(ring_name: "#{Faker::Superhero.prefix} #{Faker::Superhero.descriptor}", style_id: 1, gym_id: Gym.all.sample.id, gender: 1, fight_weight: 60)
-end
-
-8.times do |index| 
-    Event.first.sign_ups.create(user_id: User.all.sample.id)
-end
-
-
-
-Event.first.fights.create!(fighter_a_id: Event.first.sign_ups.all.sample.user_id, fighter_b_id: Event.first.sign_ups.all.sample.user_id, style_id: Style.all.sample.id, weight: 60, draw: false)
-
 
